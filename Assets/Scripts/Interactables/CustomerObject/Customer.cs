@@ -40,9 +40,15 @@ public class Customer : MonoBehaviour
         {
             canFood += foodWantCheckInterval;
             int rand = Random.Range(0, 100);
-            if(rand < foodWantChance && foodBought == false)
+            if(rand < foodWantChance && foodBought == false && wantsFood == false)
             {
                 wantsFood = true;
+                voiceSource.volume = 1/Mathf.Pow(Vector2.Distance(transform.position, GameManager.instance.player.transform.position), 2);
+                if(voiceSource.volume <= 0.15)
+                {
+                    voiceSource.volume = 0;
+                }
+                voiceSource.Play();
 
             }
         }
@@ -51,12 +57,14 @@ public class Customer : MonoBehaviour
     public void BuyFood()
     {
         foodBought = true;
+        wantsFood = false;
         GameManager.instance.money += foodMoneyToPay;
         foodPopUp.SetActive(false);
         if (ticketBought == true)
         {
             popUpObject.SetActive(false); 
         }
+        voiceSource.volume = 1;
         GetComponent<AudioSource>().Play();
         voiceSource.Play();
 
@@ -67,10 +75,15 @@ public class Customer : MonoBehaviour
         ticketBought = true;
         GameManager.instance.money += ticketMoneyToPay;
         ticketPopUp.SetActive(false);
-        if (wantsFood == true && foodBought == false)
+        if (wantsFood == true && foodBought == false && GameManager.instance.foodCart.GetInUse())
         {
-            popUpObject.SetActive(false); 
+            popUpObject.SetActive(true); 
         }
+        else
+        {
+            popUpObject.SetActive(false);
+        }
+        voiceSource.volume = 1;
         GetComponent<AudioSource>().Play();
         voiceSource.Play();
     }
@@ -84,11 +97,18 @@ public class Customer : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            if(ticketBought == false || foodBought == false)
+            if(ticketBought == false || (foodBought == false && wantsFood == true && GameManager.instance.foodCart.GetInUse()))
             {
                 popUpObject.SetActive(true);
                 ticketPopUp.SetActive(!ticketBought);
-                foodPopUp.SetActive(!foodBought);
+                if (GameManager.instance.foodCart.GetInUse())
+                {
+                    foodPopUp.SetActive(wantsFood); 
+                }
+                else
+                {
+                    foodPopUp.SetActive(false);
+                }
             }
         }
     }
@@ -99,7 +119,7 @@ public class Customer : MonoBehaviour
         {
             popUpObject.SetActive(false);
             ticketPopUp.SetActive(!ticketBought);
-            foodPopUp.SetActive(!foodBought);
+            foodPopUp.SetActive(wantsFood);
         }
     }
 
