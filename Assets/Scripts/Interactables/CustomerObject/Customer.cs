@@ -7,26 +7,70 @@ public class Customer : MonoBehaviour
     bool ticketBought = false;
     [SerializeField]
     GameObject popUpObject;
-    int moneyToPay;
+    [SerializeField]
+    GameObject foodPopUp;
+    [SerializeField]
+    GameObject ticketPopUp;
+    int ticketMoneyToPay;
+    int foodMoneyToPay;
+    bool foodBought;
     bool wantsFood = false;
     [SerializeField]
     [Range(0, 100)]
     int foodWantChance = 20;
     [SerializeField]
+    float foodWantCheckInterval = 10;
+    [SerializeField]
     AudioSource voiceSource;
     bool isMale = true;
+
+    float canFood;
 
     private void Start()
     {
         popUpObject.SetActive(false);
-        moneyToPay = Random.Range(GameManager.instance.customerMoneyToPayMin, GameManager.instance.customerMoneyToPayMax);
+        ticketMoneyToPay = Random.Range(GameManager.instance.customerMoneyToPayMin, GameManager.instance.customerMoneyToPayMax);
+        foodMoneyToPay = Random.Range(GameManager.instance.foodPriceMin, GameManager.instance.foodPriceMax);
+        canFood = foodWantCheckInterval;
+    }
+
+    private void Update()
+    {
+        if(canFood < GameManager.instance.playTime)
+        {
+            canFood += foodWantCheckInterval;
+            int rand = Random.Range(0, 100);
+            if(rand < foodWantChance && foodBought == false)
+            {
+                wantsFood = true;
+
+            }
+        }
+    }
+
+    public void BuyFood()
+    {
+        foodBought = true;
+        GameManager.instance.money += foodMoneyToPay;
+        foodPopUp.SetActive(false);
+        if (ticketBought == true)
+        {
+            popUpObject.SetActive(false); 
+        }
+        GetComponent<AudioSource>().Play();
+        voiceSource.Play();
+
     }
 
     public void BuyTicket()
     {
         ticketBought = true;
-        GameManager.instance.money += moneyToPay;
-        popUpObject.SetActive(!ticketBought);
+        GameManager.instance.money += ticketMoneyToPay;
+        ticketPopUp.SetActive(false);
+        if (wantsFood == true && foodBought == false)
+        {
+            popUpObject.SetActive(false); 
+        }
         GetComponent<AudioSource>().Play();
         voiceSource.Play();
     }
@@ -40,7 +84,12 @@ public class Customer : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            popUpObject.SetActive(!ticketBought);
+            if(ticketBought == false || foodBought == false)
+            {
+                popUpObject.SetActive(true);
+                ticketPopUp.SetActive(!ticketBought);
+                foodPopUp.SetActive(!foodBought);
+            }
         }
     }
 
@@ -49,6 +98,8 @@ public class Customer : MonoBehaviour
         if(collision.tag == "Player")
         {
             popUpObject.SetActive(false);
+            ticketPopUp.SetActive(!ticketBought);
+            foodPopUp.SetActive(!foodBought);
         }
     }
 

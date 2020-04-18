@@ -53,6 +53,8 @@ public class GameManager : MonoBehaviour
 
     AudioMixerGroup pitchBendGroup;
 
+    public float playTime;
+
     private void Awake()
     {
         if(instance == null)
@@ -88,7 +90,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         BurnCoal();
-        float playTime = Time.time - startTime;
+        playTime = Time.time - startTime;
         CalculateTempo();
         CalculateDistance();
     }

@@ -1412,13 +1412,14 @@ MonoBehaviour:
   - {fileID: 220789351}
   - {fileID: 1332830793}
   - {fileID: 1697159413}
-  minCustomers: 0
+  minCustomers: 2
   maxCustomers: 5
   totalDistance: 5
   backgroundSpeedMultiplier: 20
   audioSource: {fileID: 1174498216}
   maleVoice: []
   femaleVoice: []
+  playTime: 0
 --- !u!4 &1310098401
 Transform:
   m_ObjectHideFlags: 0
