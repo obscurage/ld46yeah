@@ -817,7 +817,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0e59cfc1e0ba17b408a040b632f8fbec, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9c893a423d4e94c43b38b73e19acb9eb, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.2
   m_Pitch: 1
@@ -1066,7 +1066,7 @@ MonoBehaviour:
   coalLeft: 0
   coalInMachine: 0
   maxCoalInMachine: 20
-  currentSpeed: 0
+  currentSpeed: 100
   speedMax: 141
   currentTemperature: 0
   temperatureMax: 100
