@@ -659,6 +659,7 @@ GameObject:
   m_Component:
   - component: {fileID: 679196388}
   - component: {fileID: 679196389}
+  - component: {fileID: 679196390}
   m_Layer: 0
   m_Name: Cart
   m_TagString: Untagged
@@ -719,9 +720,10 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 9655135294e7eb44fa0c6b3a868228a6, type: 3}
+  m_Sprite: {fileID: -1457400382318517017, guid: 60340d04a26e1a948bb2f8e5778a8b99,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 19.2, y: 10.8}
@@ -730,6 +732,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &679196390
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679196387}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 539f85cf406db61409ca7deb4daaaa68, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &696881802
 GameObject:
   m_ObjectHideFlags: 0
@@ -1933,6 +1954,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingOrder
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3241120094166859894, guid: b37c0588cecef5f4cb35f3d48618e249,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3241120094605477476, guid: b37c0588cecef5f4cb35f3d48618e249,
         type: 3}
