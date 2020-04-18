@@ -8,6 +8,12 @@ public class GameManager : MonoBehaviour
 {
     //You cna use GameManagers variables etc in any script with GameManager.instance.myVariable/myFunction() 
     public static GameManager instance = null;
+    public GameObject player;
+    public CartObject foodCart;
+    public int foodPriceMax = 50;
+    public int foodPriceMin = 25;
+    [Tooltip("How much the cart slows the player")]
+    public float cartMultiplier = 0.5f;
 
     public float startCoal = 100;
     public float coalLeft;
@@ -42,6 +48,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     AudioSource audioSource;
+    public AudioClip[] maleVoice;
+    public AudioClip[] femaleVoice;
 
     AudioMixerGroup pitchBendGroup;
 
@@ -59,6 +67,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        maleVoice = Resources.LoadAll<AudioClip>("CharactersVoices/Male");
+        femaleVoice = Resources.LoadAll<AudioClip>("CharactersVoices/Female");
         coalLeft = startCoal;
 
         pitchBendGroup = Resources.Load<AudioMixerGroup>("BackgroundMixer");
@@ -192,7 +202,17 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < chosenSpawns.Count; i++)
         {
-            Instantiate(customerPrefab, chosenSpawns[i].transform.position, Quaternion.identity);
+            GameObject c = Instantiate(customerPrefab, chosenSpawns[i].transform.position, Quaternion.identity);
+            c.GetComponent<Customer>().SetGender();
+            if (c.GetComponent<Customer>().GetGender())
+            {
+                c.GetComponent<Customer>().GetVoiceSource().clip = maleVoice[Random.Range(0, maleVoice.Length)];
+
+            }
+            else
+            {
+                c.GetComponent<Customer>().GetVoiceSource().clip = femaleVoice[Random.Range(0, femaleVoice.Length)];
+            }
         }
     }
 }
