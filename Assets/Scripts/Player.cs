@@ -22,15 +22,24 @@ public class Player : MonoBehaviour
 
     private void CalculateMovement()
     {
-        if(GameManager.instance.foodCart.GetInUse())
+        float direction = Input.GetAxis("Horizontal");
+        if (GameManager.instance.foodCart.GetInUse())
         {
             currentSpeed = speed * GameManager.instance.cartMultiplier;
+            GetComponentInChildren<SpriteRenderer>().flipX = true;
         }
         else
         {
+            if (direction < 0) { 
+                GetComponentInChildren<SpriteRenderer>().flipX = true;
+            }
+            else if (direction > 0) { 
+                GetComponentInChildren<SpriteRenderer>().flipX = false;
+            }
+
             currentSpeed = speed;
         }
-        Vector2 movement = new Vector2(Input.GetAxis("Horizontal") * currentSpeed * Time.deltaTime, 0);
+        Vector2 movement = new Vector2(direction * currentSpeed * Time.deltaTime, 0);
         transform.Translate(movement);
     }
 }
