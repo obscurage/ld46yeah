@@ -15,8 +15,7 @@ public class GameManager : MonoBehaviour
 
     public float maxCoalInMachine = 20;
     public float currentSpeed;
-    public float speedMax = 15;
-    public float speedMin = 0;
+    public float speedMax = 141;
     public float currentTemperature = 0;
     public float temperatureMax = 100;
     public float temperatureMin = 0;
@@ -37,6 +36,10 @@ public class GameManager : MonoBehaviour
 
     public TMP_Text timeText;
     private float startTime;
+
+    [Tooltip("Distance in km")]
+    public float totalDistance = 5;
+    float distanceTravelled = 0;
 
     [SerializeField]
     AudioSource audioSource;
@@ -78,8 +81,28 @@ public class GameManager : MonoBehaviour
         BurnCoal();
         float playTime = Time.time - startTime;
         timeText.text = playTime.ToString();
-        audioSource.pitch = currentSpeed / speedMax;
-        pitchBendGroup.audioMixer.SetFloat("PitchBend",2 - currentSpeed / speedMax);
+        CalculateTempo();
+        CalculateDistance();
+    }
+
+    void CalculateDistance()
+    {
+        if(distanceTravelled + currentSpeed * Time.deltaTime < totalDistance * 1000)
+        {
+            distanceTravelled += currentSpeed * Time.deltaTime;
+        }
+        else
+        {
+            distanceTravelled = totalDistance;
+            print("voitit pelin");
+        }
+    }
+
+    private void CalculateTempo()
+    {
+        float pitch = currentSpeed / speedMax;
+        audioSource.pitch = pitch;
+        pitchBendGroup.audioMixer.SetFloat("PitchBend", 1 / pitch);
     }
 
     void BurnCoal()
@@ -97,19 +120,19 @@ public class GameManager : MonoBehaviour
         float tempAccelerationRate = 0;
         if(coalInMachineRate >= 75)
         {
-            tempAccelerationRate = 1.5f;
+            tempAccelerationRate = 2f;
         }
         else if(coalInMachineRate >= 50 && coalInMachineRate < 75)
         {
-            tempAccelerationRate = 0.5f;
+            tempAccelerationRate = 1f;
         }
         else if (coalInMachineRate >= 25 && coalInMachineRate < 50)
         {
-            tempAccelerationRate = -0.5f;
+            tempAccelerationRate = -1f;
         }
         else if (coalInMachineRate < 25)
         {
-            tempAccelerationRate = -1.5f;
+            tempAccelerationRate = -2f;
         }
         RaiseTemperature(tempAccelerationRate);
     }
@@ -123,28 +146,36 @@ public class GameManager : MonoBehaviour
         float speedAccelerationRate = 0;
         if (tempRate >= 75)
         {
-            speedAccelerationRate = 1.5f;
+            speedAccelerationRate = 2f;
         }
         else if (tempRate >= 50 && tempRate < 75)
         {
-            speedAccelerationRate = 0.5f;
+            speedAccelerationRate = 1f;
         }
         else if (tempRate >= 25 && tempRate < 50)
         {
-            speedAccelerationRate = -0.5f;
+            speedAccelerationRate = -1f;
         }
         else if (tempRate < 25)
         {
-            speedAccelerationRate = -1.5f;
+            speedAccelerationRate = -2f;
         }
         CalculateSpeed(speedAccelerationRate);
     }
 
     void CalculateSpeed(float rate)
     {
-        if (currentSpeed + rate * Time.deltaTime <= speedMax && currentSpeed + rate >= speedMin)
+        if (currentSpeed + rate * Time.deltaTime <= speedMax && currentSpeed + rate * Time.deltaTime >= 0)
         {
             currentSpeed += rate * Time.deltaTime * 0.5f;
+        }
+        else if(currentSpeed + rate * Time.deltaTime >= speedMax)
+        {
+            currentSpeed = speedMax;
+        }
+        else if (currentSpeed + rate * Time.deltaTime <= 0)
+        {
+            currentSpeed = 0;
         }
     }
 

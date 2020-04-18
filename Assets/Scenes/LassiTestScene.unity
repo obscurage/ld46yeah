@@ -1664,7 +1664,7 @@ MonoBehaviour:
   coalInMachine: 0
   maxCoalInMachine: 10
   currentSpeed: 0
-  speedMax: 15
+  speedMax: 141
   speedMin: 0
   currentTemperature: 0
   temperatureMax: 100
