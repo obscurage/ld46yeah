@@ -33,13 +33,12 @@ public class GameManager : MonoBehaviour
     public List<GameObject> customerSpots = new List<GameObject>();
     public int minCustomers = 10;
     public int maxCustomers = 20;
-
-    public TMP_Text timeText;
     private float startTime;
 
     [Tooltip("Distance in km")]
     public float totalDistance = 5;
     float distanceTravelled = 0;
+    public float backgroundSpeedMultiplier = 2;
 
     [SerializeField]
     AudioSource audioSource;
@@ -80,7 +79,6 @@ public class GameManager : MonoBehaviour
     {
         BurnCoal();
         float playTime = Time.time - startTime;
-        timeText.text = playTime.ToString();
         CalculateTempo();
         CalculateDistance();
     }

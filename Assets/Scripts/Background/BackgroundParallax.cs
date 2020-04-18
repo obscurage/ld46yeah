@@ -7,7 +7,7 @@ public class BackgroundParallax : MonoBehaviour
     private float length, startpos;
     public GameObject cam;
     public float parallaxEffect;
-    public float speed = 8f;
+    private float speed;
 
     void Start()
     {
@@ -17,8 +17,7 @@ public class BackgroundParallax : MonoBehaviour
 
     void FixedUpdate()
     {
-        
-        //float dTime = 
+        speed = GameManager.instance.currentSpeed * GameManager.instance.backgroundSpeedMultiplier / GameManager.instance.speedMax;
         float temp = transform.position.x - ((1 - parallaxEffect) * Time.deltaTime * speed);
         float dist = transform.position.x - (parallaxEffect * Time.deltaTime * speed);
 
