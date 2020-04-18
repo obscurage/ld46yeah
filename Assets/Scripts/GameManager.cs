@@ -24,6 +24,13 @@ public class GameManager : MonoBehaviour
 
     public float coalBurnRate = 1;
 
+    public int money;
+    public int customerMoneyToPayMax = 50;
+    public int customerMoneyToPayMin = 10;
+
+    [SerializeField]
+    AudioSource audioSource;
+
     private void Awake()
     {
         if(instance == null)
@@ -39,6 +46,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         coalLeft = startCoal;
+
+        var pitchBendGroup = Resources.Load<UnityEngine.Audio.AudioMixerGroup>("BackgroundMixer");
+        audioSource.outputAudioMixerGroup = pitchBendGroup;
+        audioSource.pitch = 2f;
+        pitchBendGroup.audioMixer.SetFloat("PitchBend", 1f / 2f);
     }
 
     private void Update()
@@ -106,7 +118,7 @@ public class GameManager : MonoBehaviour
 
     void CalculateSpeed(float rate)
     {
-        if (currentSpeed + rate * Time.deltaTime <= speedMax && currentTemperature + rate >= speedMin)
+        if (currentSpeed + rate * Time.deltaTime <= speedMax && currentSpeed + rate >= speedMin)
         {
             currentSpeed += rate * Time.deltaTime * 0.5f;
         }
