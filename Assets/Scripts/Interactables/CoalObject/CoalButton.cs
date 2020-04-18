@@ -14,7 +14,6 @@ public class CoalButton : MonoBehaviour
         GameManager gm = GameManager.instance;
         if (gm.coalLeft > 0)
         {
-            print("hiiltä lapattu");
             float coalThrew;
             if (gm.coalLeft >= gm.coalPerThrow)
             {

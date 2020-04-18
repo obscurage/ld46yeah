@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public float coalInMachine;
 
     public float maxCoalInMachine = 20;
-    public float currentSpeed;
+    public float currentSpeed = 141;
     public float speedMax = 141;
     public float currentTemperature = 0;
     public float temperatureMax = 100;

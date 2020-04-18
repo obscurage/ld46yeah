@@ -20,6 +20,7 @@ public class Customer : MonoBehaviour
         ticketBought = true;
         GameManager.instance.money += moneyToPay;
         popUpObject.SetActive(!ticketBought);
+        GetComponent<AudioSource>().Play();
     }
 
     public bool GetTicketBought()
