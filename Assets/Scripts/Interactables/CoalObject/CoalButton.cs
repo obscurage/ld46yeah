@@ -36,6 +36,5 @@ public class CoalButton : MonoBehaviour
                 gm.coalInMachine = gm.maxCoalInMachine;
             }
         }
-        print("ei hiiltä");
     }
 }
