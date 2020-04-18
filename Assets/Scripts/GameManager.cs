@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,6 +29,9 @@ public class GameManager : MonoBehaviour
     public int customerMoneyToPayMax = 50;
     public int customerMoneyToPayMin = 10;
 
+    public TMP_Text timeText;
+    private float startTime;
+
     [SerializeField]
     AudioSource audioSource;
 
@@ -51,11 +55,14 @@ public class GameManager : MonoBehaviour
         audioSource.outputAudioMixerGroup = pitchBendGroup;
         audioSource.pitch = 2f;
         pitchBendGroup.audioMixer.SetFloat("PitchBend", 1f / 2f);
+        startTime = Time.time;
     }
 
     private void Update()
     {
         BurnCoal();
+        float playTime = Time.time - startTime;
+        timeText.text = playTime.ToString();
     }
 
     void BurnCoal()
