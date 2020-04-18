@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,11 +30,18 @@ public class GameManager : MonoBehaviour
     public int customerMoneyToPayMax = 50;
     public int customerMoneyToPayMin = 10;
 
+    public GameObject customerPrefab;
+    public List<GameObject> customerSpots = new List<GameObject>();
+    public int minCustomers = 10;
+    public int maxCustomers = 20;
+
     public TMP_Text timeText;
     private float startTime;
 
     [SerializeField]
     AudioSource audioSource;
+
+    AudioMixerGroup pitchBendGroup;
 
     private void Awake()
     {
@@ -51,11 +59,18 @@ public class GameManager : MonoBehaviour
     {
         coalLeft = startCoal;
 
-        var pitchBendGroup = Resources.Load<UnityEngine.Audio.AudioMixerGroup>("BackgroundMixer");
+        pitchBendGroup = Resources.Load<AudioMixerGroup>("BackgroundMixer");
         audioSource.outputAudioMixerGroup = pitchBendGroup;
-        audioSource.pitch = 2f;
-        pitchBendGroup.audioMixer.SetFloat("PitchBend", 1f / 2f);
         startTime = Time.time;
+        if(maxCustomers > customerSpots.Count)
+        {
+            maxCustomers = customerSpots.Count;
+        }
+        if(minCustomers > maxCustomers)
+        {
+            minCustomers = maxCustomers;
+        }
+        SpawnCustomers();
     }
 
     private void Update()
@@ -63,6 +78,8 @@ public class GameManager : MonoBehaviour
         BurnCoal();
         float playTime = Time.time - startTime;
         timeText.text = playTime.ToString();
+        audioSource.pitch = currentSpeed / speedMax;
+        pitchBendGroup.audioMixer.SetFloat("PitchBend",2 - currentSpeed / speedMax);
     }
 
     void BurnCoal()
@@ -128,6 +145,25 @@ public class GameManager : MonoBehaviour
         if (currentSpeed + rate * Time.deltaTime <= speedMax && currentSpeed + rate >= speedMin)
         {
             currentSpeed += rate * Time.deltaTime * 0.5f;
+        }
+    }
+
+    void SpawnCustomers()
+    {
+        List<GameObject> chosenSpawns = new List<GameObject>();
+        List<GameObject> copySpawns = customerSpots;
+
+        int count = Random.Range(minCustomers, maxCustomers);
+        for (int i = 0; i < count; i++)
+        {
+            int index = Random.Range(0, copySpawns.Count);
+            chosenSpawns.Add(copySpawns[index]);
+            copySpawns.RemoveAt(index);
+        }
+
+        for (int i = 0; i < chosenSpawns.Count; i++)
+        {
+            Instantiate(customerPrefab, chosenSpawns[i].transform.position, Quaternion.identity);
         }
     }
 }
