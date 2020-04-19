@@ -12,8 +12,14 @@ public class BackgroundMusicPlayer : MonoBehaviour
     private Queue<int> clipRequestQueue = new Queue<int>();
     private int lastRequestedClipIndex = -1;
 
+    private List<bool> initialLoopInformation = new List<bool>();
+
     void Start()
     {
+        foreach (AudioSource audioSource in audioSources)
+        {
+            initialLoopInformation.Add(audioSource.loop);
+        }
         currentAudioSource = audioSources[currentListIndex];
     }
 
@@ -28,6 +34,23 @@ public class BackgroundMusicPlayer : MonoBehaviour
             currentListIndex = nextIndex;
             MoveTo(currentListIndex);
         }
+    }
+
+    public void reset()
+    {
+        currentAudioSource.Stop();
+
+        int i = 0;
+        foreach (AudioSource audioSource in audioSources)
+        {
+            audioSource.loop = initialLoopInformation[i];
+            i++;
+        }
+
+        currentListIndex = 0;
+        currentAudioSource = audioSources[currentListIndex];
+        clipRequestQueue = new Queue<int>();
+        lastRequestedClipIndex = -1;
     }
 
     public bool requestClipChange(int index)

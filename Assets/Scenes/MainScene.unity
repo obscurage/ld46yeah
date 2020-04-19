@@ -432,7 +432,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1084819026}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &120740803
 AudioSource:
@@ -1548,7 +1548,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1084819026}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &599646990
 MonoBehaviour:
@@ -2851,6 +2851,7 @@ Transform:
   - {fileID: 1174498217}
   - {fileID: 599646989}
   - {fileID: 960737861}
+  - {fileID: 120740802}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3237,9 +3238,9 @@ MonoBehaviour:
   coalLeft: 0
   coalInMachine: 0
   maxCoalInMachine: 20
-  currentSpeed: 100
+  currentSpeed: 10
   speedMax: 141
-  currentTemperature: 70
+  currentTemperature: 0
   temperatureMax: 100
   temperatureMin: 0
   coalPerThrow: 3

@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public float maxCoalInMachine = 20;
     public float currentSpeed = 141;
     public float speedMax = 141;
+    public float startSpeed = 10;
     public float currentTemperature = 0;
     public float temperatureMax = 100;
     public float temperatureMin = 0;
@@ -233,6 +234,7 @@ public class GameManager : MonoBehaviour
         }
         RaiseTemperature(tempAccelerationRate);
     }
+    
     void RaiseTemperature(float rate)
     {
         if(currentTemperature + rate * Time.deltaTime <= temperatureMax && currentTemperature + rate >= temperatureMin)
@@ -330,6 +332,8 @@ public class GameManager : MonoBehaviour
 
     private void ResetGameState()
     {
+        backgroundMusicPlayer.reset();
+        currentSpeed = startSpeed;
 
     }
 
