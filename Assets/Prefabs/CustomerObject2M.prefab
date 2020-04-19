@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 5488512861023331882}
   m_Layer: 5
   m_Name: CustomerPopUp
-  m_TagString: Untagged
+  m_TagString: InteractablePopup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

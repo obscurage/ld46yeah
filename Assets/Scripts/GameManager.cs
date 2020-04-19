@@ -59,7 +59,11 @@ public class GameManager : MonoBehaviour
     public float playTime;
     public List<Animator> animators = new List<Animator>();
 
+    private GameState gameState = GameState.NOT_STARTED;
+    private bool gameInitiallyStarted = false;
+
     [SerializeField] BackgroundMusicPlayer backgroundMusicPlayer;
+    [SerializeField] GameObject startMenu;
 
     private void Awake()
     {
@@ -75,7 +79,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        // This should be called when player starts the game by pressin Start on main menu.
         backgroundMusicPlayer.requestClipChange(1);        
 
         maleVoice = Resources.LoadAll<AudioClip>("CharactersVoices/Male");
@@ -98,12 +101,62 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        BurnCoal();
-        playTime = Time.time - startTime;
-        CalculateTempo();
-        CalculateDistance();
-        CalculateAnimationSpeed();
+        // Stuff that will be run regardless of game state
         HandleMusicChanges();
+        HandleInputs();
+
+        if (gameState == GameState.PAUSE || gameState == GameState.NOT_STARTED) return;
+        if (gameState == GameState.WON)
+        {
+            gameInitiallyStarted = false;
+            print("voitit pelin");
+        }
+        else if (gameState == GameState.LOST)
+        {
+            gameInitiallyStarted = false;
+            print("hävisit pelin");
+        }
+        else
+        {
+            // Stuff that should be run only if game is not on pause, won or lost.
+            BurnCoal();
+            playTime = Time.time - startTime;
+            CalculateTempo();
+            CalculateDistance();
+            CalculateAnimationSpeed();
+        }
+    }
+
+    public void TogglePause()
+    {
+        if (gameState == GameState.LOST || gameState == GameState.WON || gameState == GameState.NOT_STARTED) return;
+        if (gameState == GameState.PAUSE)
+        {
+            gameState = GameState.RUNNING;
+            startMenu.SetActive(false);
+        }
+        else {
+            gameState = GameState.PAUSE;
+            startMenu.SetActive(true);
+        }
+    }
+
+    public void StartGame()
+    {
+        if (!gameInitiallyStarted)
+        {
+            gameInitiallyStarted = true;
+            gameState = GameState.RUNNING;
+        } 
+        else
+        {
+            TogglePause();
+        }
+    }
+
+    public GameState GetGameState()
+    {
+        return gameState;
     }
 
     void CalculateDistance()
@@ -115,11 +168,11 @@ public class GameManager : MonoBehaviour
         else
         {
             distanceTravelled = totalDistance;
-            print("voitit pelin");
+            gameState = GameState.WON;
         }
     }
 
-    float CalculateDistanceTravelledAsPercentage()
+    float GetDistanceTravelledAsPercentage()
     {
         if (distanceTravelled <= 0) return 0f;
         return (distanceTravelled / (totalDistance * 1000)) * 100;
@@ -245,7 +298,7 @@ public class GameManager : MonoBehaviour
 
     void HandleMusicChanges()
     {
-        float distanceTravelledAsPercentage = CalculateDistanceTravelledAsPercentage();
+        float distanceTravelledAsPercentage = GetDistanceTravelledAsPercentage();
         if (distanceTravelled > 0 && distanceTravelledAsPercentage < 45) {
             backgroundMusicPlayer.requestClipChange(2);
         }
@@ -256,4 +309,18 @@ public class GameManager : MonoBehaviour
             backgroundMusicPlayer.requestClipChange(6);
         }
     }
+
+    void HandleInputs()
+    {
+        bool pausePressed = Input.GetButtonDown("Cancel");
+        if (pausePressed)
+        {
+            TogglePause();
+        }
+    }
+}
+
+public enum GameState
+{
+    NOT_STARTED, PAUSE, RUNNING, WON, LOST
 }

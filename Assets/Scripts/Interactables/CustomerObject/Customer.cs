@@ -30,8 +30,11 @@ public class Customer : MonoBehaviour
 
     Player player;
 
+    private GameManager gameManager;
+
     private void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         foodWantCheckInterval = Random.Range(foodWantCheckIntervalMin, foodWantCheckIntervalMax);
         player = GameManager.instance.player.GetComponent<Player>();
         popUpObject.SetActive(false);
@@ -42,6 +45,8 @@ public class Customer : MonoBehaviour
 
     private void Update()
     {
+        if (gameManager.GetGameState() != GameState.RUNNING) return;
+
         if(canFood < GameManager.instance.playTime)
         {
             foodWantCheckInterval = Random.Range(foodWantCheckIntervalMin, foodWantCheckIntervalMax);
@@ -63,6 +68,7 @@ public class Customer : MonoBehaviour
 
     public void BuyFood()
     {
+        if (gameManager.GetGameState() != GameState.RUNNING) return;
         StartCoroutine(FoodBuying());
     }
 
@@ -91,6 +97,7 @@ public class Customer : MonoBehaviour
 
     public void BuyTicket()
     {
+        if (gameManager.GetGameState() != GameState.RUNNING) return;
         StartCoroutine(TicketBuying());
     }
 

@@ -25,19 +25,24 @@ public class Player : MonoBehaviour
     public List<AudioClip> pencilClips = new List<AudioClip>();
     public List<AudioClip> ripClips = new List<AudioClip>();
 
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
         currentSpeed = speed;
         audioSource = GetComponent<AudioSource>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        CalculateMovement();
-        PlayFootStepSound();
+        if (gameManager.GetGameState() == GameState.RUNNING)
+        {
+            CalculateMovement();
+            PlayFootStepSound();
+        }
     }
 
     private void CalculateMovement()
@@ -85,7 +90,10 @@ public class Player : MonoBehaviour
 
     public void ThrowCoal()
     {
-        StartCoroutine(CoalThrowing());
+        if (gameManager.GetGameState() == GameState.RUNNING)
+        {
+            StartCoroutine(CoalThrowing());
+        }
     }
 
     public IEnumerator CoalThrowing()
