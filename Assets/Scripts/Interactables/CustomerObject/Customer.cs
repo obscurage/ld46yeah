@@ -30,6 +30,8 @@ public class Customer : MonoBehaviour
     int blinkIntervalMax = 5;
     [SerializeField]
     int blinkIntervalMin = 20;
+    [SerializeField]
+    GameObject wantFoodPopUp;
 
     int canBlink;
 
@@ -71,6 +73,7 @@ public class Customer : MonoBehaviour
             if(rand < foodWantChance && foodBought == false && wantsFood == false)
             {
                 wantsFood = true;
+                wantFoodPopUp.SetActive(true);
                 voiceSource.volume = 1/Mathf.Pow(Vector2.Distance(transform.position, GameManager.instance.player.transform.position), 2);
                 if(voiceSource.volume <= 0.15)
                 {
@@ -98,7 +101,7 @@ public class Customer : MonoBehaviour
     {
         foodBought = true;
         wantsFood = false;
-        GameManager.instance.money += foodMoneyToPay;
+        wantFoodPopUp.SetActive(false);
         foodPopUp.SetActive(false);
         if (ticketBought == true)
         {
@@ -108,6 +111,7 @@ public class Customer : MonoBehaviour
         player.ticketSource.clip = player.pencilClips[Random.Range(0, player.pencilClips.Count)];
         player.ticketSource.Play();
         yield return new WaitForSeconds(player.foodSellTime);
+        GameManager.instance.money += foodMoneyToPay;
         player.ticketSource.clip = player.ripClips[Random.Range(0, player.ripClips.Count)];
         player.ticketSource.Play();
         player.inAction = false;
@@ -128,7 +132,6 @@ public class Customer : MonoBehaviour
     public IEnumerator TicketBuying()
     {
         ticketBought = true;
-        GameManager.instance.money += ticketMoneyToPay;
         ticketPopUp.SetActive(false);
         if (wantsFood == true && foodBought == false && GameManager.instance.foodCart.GetInUse())
         {
@@ -142,6 +145,7 @@ public class Customer : MonoBehaviour
         player.ticketSource.clip = player.pencilClips[Random.Range(0,player.pencilClips.Count)];
         player.ticketSource.Play();
         yield return new WaitForSeconds(player.ticketSellTime);
+        GameManager.instance.money += ticketMoneyToPay;
         player.ticketSource.clip = player.ripClips[Random.Range(0,player.ripClips.Count)];
         player.ticketSource.Play();
         player.inAction = false;

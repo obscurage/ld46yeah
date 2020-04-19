@@ -109,7 +109,6 @@ public class Player : MonoBehaviour
         anim.Play("Konnari_Shovel");
         GameManager gm = GameManager.instance;
         inAction = true;
-        print(coalThrowTime);
         yield return new WaitForSeconds(coalThrowTime);
         inAction = false;
         if (gm.coalLeft > 0)
