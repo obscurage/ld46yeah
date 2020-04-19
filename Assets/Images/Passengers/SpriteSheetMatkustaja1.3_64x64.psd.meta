@@ -17,6 +17,9 @@ TextureImporter:
   - first:
       213: 2014764387084231347
     second: SpriteSheetMatkustaja1.3_64x64_4
+  - first:
+      213: 8586568519270107512
+    second: SpriteSheetMatkustaja1.3_64x64_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -226,6 +229,27 @@ TextureImporter:
       bones: []
       spriteID: 3b2634e0981e5fb10800000000000000
       internalID: 2014764387084231347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetMatkustaja1.3_64x64_5
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 3
+        width: 28
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87985ae139e992770800000000000000
+      internalID: 8586568519270107512
       vertices: []
       indices: 
       edges: []
