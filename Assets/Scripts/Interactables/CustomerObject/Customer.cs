@@ -25,7 +25,6 @@ public class Customer : MonoBehaviour
     float foodWantCheckInterval;
     [SerializeField]
     AudioSource voiceSource;
-    bool isMale = true;
 
     float canFood;
 
@@ -158,23 +157,5 @@ public class Customer : MonoBehaviour
     public AudioSource GetVoiceSource()
     {
         return voiceSource;
-    }
-
-    public bool GetGender()
-    {
-        return isMale;
-    }
-
-    public void SetGender()
-    {
-        int gender = Random.Range(0, 2);
-        if (gender == 0)
-        {
-            isMale = true;
-        }
-        else
-        {
-            isMale = false;
-        }
     }
 }

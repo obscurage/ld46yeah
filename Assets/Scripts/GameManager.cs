@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
-    //You cna use GameManagers variables etc in any script with GameManager.instance.myVariable/myFunction() 
+    //You can use GameManagers variables etc in any script with GameManager.instance.myVariable/myFunction() 
     public static GameManager instance = null;
     public GameObject player;
     public CartObject foodCart;
@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public int customerMoneyToPayMin = 10;
 
     public GameObject customerPrefab;
+    public List<GameObject> customerPrefabs = new List<GameObject>();
     public List<GameObject> customerSpots = new List<GameObject>();
     public int minCustomers = 10;
     public int maxCustomers = 20;
@@ -48,7 +49,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     AudioSource audioSource;
+    [HideInInspector]
     public AudioClip[] maleVoice;
+    [HideInInspector]
     public AudioClip[] femaleVoice;
 
     AudioMixerGroup pitchBendGroup;
@@ -227,16 +230,15 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < chosenSpawns.Count; i++)
         {
-            GameObject c = Instantiate(customerPrefab, chosenSpawns[i].transform.position, Quaternion.identity);
-            c.GetComponent<Customer>().SetGender();
-            if (c.GetComponent<Customer>().GetGender())
+            GameObject c = Instantiate(customerPrefabs[Random.Range(0,customerPrefabs.Count)], chosenSpawns[i].transform.position, Quaternion.identity);
+            if (c.name.Contains("F"))
             {
-                c.GetComponent<Customer>().GetVoiceSource().clip = maleVoice[Random.Range(0, maleVoice.Length)];
+                c.GetComponent<Customer>().GetVoiceSource().clip = femaleVoice[Random.Range(0, femaleVoice.Length)];
 
             }
             else
             {
-                c.GetComponent<Customer>().GetVoiceSource().clip = femaleVoice[Random.Range(0, femaleVoice.Length)];
+                c.GetComponent<Customer>().GetVoiceSource().clip = maleVoice[Random.Range(0, maleVoice.Length)];
             }
         }
     }
