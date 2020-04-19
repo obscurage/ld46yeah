@@ -70,6 +70,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject startMenu;
 
     public TMP_Text cashText;
+    public TMP_Text buttonText;
+    public TMP_Text uiTitle;
 
     private void Awake()
     {
@@ -117,13 +119,11 @@ public class GameManager : MonoBehaviour
         {
             gameInitiallyStarted = false;
             SetWonScreen();
-            print("voitit pelin");
         }
         else if (gameState == GameState.LOST)
         {
             gameInitiallyStarted = false;
             SetLostScreen();
-            print("hävisit pelin");
         }
         else
         {
@@ -161,10 +161,7 @@ public class GameManager : MonoBehaviour
             {
                 ResetGameState();
             }
-
-            TextMeshProUGUI uiTitle = startMenu.GetComponentsInChildren<TextMeshProUGUI>()[0];
             uiTitle.text = "TRAIN GAEM (PAUSED)";
-            TextMeshProUGUI buttonText = startMenu.GetComponentsInChildren<TextMeshProUGUI>()[1];
             buttonText.text = "Continue";
 
             gameInitiallyStarted = true;
@@ -351,18 +348,14 @@ public class GameManager : MonoBehaviour
     private void SetWonScreen()
     {
         startMenu.SetActive(true);
-        TextMeshProUGUI uiTitle = startMenu.GetComponentsInChildren<TextMeshProUGUI>()[0];
         uiTitle.text = "YOU WON!";
-        TextMeshProUGUI buttonText = startMenu.GetComponentsInChildren<TextMeshProUGUI>()[1];
         buttonText.text = "Again";
     }
 
     private void SetLostScreen()
     {
         startMenu.SetActive(true);
-        TextMeshProUGUI uiTitle = startMenu.GetComponentsInChildren<TextMeshProUGUI>()[0];
         uiTitle.text = "YOU LOST!";
-        TextMeshProUGUI buttonText = startMenu.GetComponentsInChildren<TextMeshProUGUI>()[1];
         buttonText.text = "Again";
     }
 

@@ -1097,6 +1097,7 @@ MonoBehaviour:
   voiceSource: {fileID: 5098204311915541599}
   blinkIntervalMax: 5
   blinkIntervalMin: 10
+  canvas: {fileID: 5488512861023332052}
 --- !u!82 &1669455005004475831
 AudioSource:
   m_ObjectHideFlags: 0

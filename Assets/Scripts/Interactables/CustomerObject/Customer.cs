@@ -40,6 +40,9 @@ public class Customer : MonoBehaviour
 
     private GameManager gameManager;
 
+    [SerializeField]
+    Canvas canvas;
+
     private void Start()
     {
         gameManager = GameManager.instance;
@@ -53,7 +56,7 @@ public class Customer : MonoBehaviour
         canBlink = Random.Range(blinkIntervalMin, blinkIntervalMax);
         char[] name = gameObject.name.ToCharArray();
         index = int.Parse(name[14].ToString());
-        print(index);
+        canvas.worldCamera = Camera.main;
     }
 
     private void Update()
