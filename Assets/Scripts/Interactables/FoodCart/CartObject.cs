@@ -9,13 +9,23 @@ public class CartObject : MonoBehaviour
     [SerializeField]
     Transform playerPosition;
 
+    private GameManager gameManager;
+
     bool inUse = false;
+
+    private void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
 
     public void UseCart()
     {
-        popUp.SetActive(false);
-        inUse = true;
-        GameManager.instance.player.transform.position = new Vector2(playerPosition.position.x, GameManager.instance.player.transform.position.y);
+        if (gameManager.GetGameState() == GameState.RUNNING)
+        {
+            popUp.SetActive(false);
+            inUse = true;
+            GameManager.instance.player.transform.position = new Vector2(playerPosition.position.x, GameManager.instance.player.transform.position.y);
+        }
     }
 
     public bool GetInUse()
@@ -40,16 +50,18 @@ public class CartObject : MonoBehaviour
 
     private void Update()
     {
-        if(inUse && !GameManager.instance.player.GetComponent<Player>().inAction)
+        if (gameManager.GetGameState() == GameState.RUNNING)
         {
-            MoveCart();
-
-            if(Input.GetKeyDown(KeyCode.Mouse1))
+            if (inUse && !GameManager.instance.player.GetComponent<Player>().inAction)
             {
-                inUse = false;
+                MoveCart();
+
+                if (Input.GetKeyDown(KeyCode.Mouse1))
+                {
+                    inUse = false;
+                }
             }
         }
-
     }
 
     void MoveCart()

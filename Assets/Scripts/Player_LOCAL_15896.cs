@@ -27,7 +27,6 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public Animator anim;
 
-    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -35,17 +34,13 @@ public class Player : MonoBehaviour
         currentSpeed = speed;
         audioSource = GetComponent<AudioSource>();
         anim = GetComponentInChildren<Animator>();
-        gameManager = gameManager.instance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.GetGameState() == GameState.RUNNING)
-        {
-            CalculateMovement();
-            PlayFootStepSound();
-        }
+        CalculateMovement();
+        PlayFootStepSound();
     }
 
     private void CalculateMovement()
@@ -97,10 +92,7 @@ public class Player : MonoBehaviour
 
     public void ThrowCoal()
     {
-        if (gameManager.GetGameState() == GameState.RUNNING)
-        {
-            StartCoroutine(CoalThrowing());
-        }
+        StartCoroutine(CoalThrowing());
     }
 
     public IEnumerator CoalThrowing()

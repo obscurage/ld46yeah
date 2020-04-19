@@ -2441,7 +2441,7 @@ Transform:
   - {fileID: 366701828}
   - {fileID: 724765865}
   m_Father: {fileID: 1084819026}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &960737862
 MonoBehaviour:
@@ -2573,7 +2573,7 @@ GameObject:
   - component: {fileID: 1014734038}
   m_Layer: 5
   m_Name: FoodPopUp
-  m_TagString: Untagged
+  m_TagString: InteractablePopup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2848,7 +2848,6 @@ Transform:
   m_LocalPosition: {x: -3.9050446, y: 3.7668107, z: -3.3233783}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 120740802}
   - {fileID: 1174498217}
   - {fileID: 599646989}
   - {fileID: 960737861}
@@ -3061,7 +3060,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1084819026}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1213538757
 GameObject:
@@ -3279,6 +3278,7 @@ MonoBehaviour:
   - {fileID: 719250424}
   - {fileID: 109887305}
   backgroundMusicPlayer: {fileID: 960737862}
+  startMenu: {fileID: 1647442507}
 --- !u!4 &1310098401
 Transform:
   m_ObjectHideFlags: 0
@@ -3823,7 +3823,7 @@ PrefabInstance:
     - target: {fileID: 6408818420275843868, guid: 02a2304ff598b184f92b9dd6565cf857,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6408818420275843871, guid: 02a2304ff598b184f92b9dd6565cf857,
         type: 3}
@@ -3918,7 +3918,7 @@ PrefabInstance:
     - target: {fileID: 6408818420780735668, guid: 02a2304ff598b184f92b9dd6565cf857,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6408818420780735668, guid: 02a2304ff598b184f92b9dd6565cf857,
         type: 3}
@@ -3943,6 +3943,31 @@ PrefabInstance:
     - target: {fileID: 6408818420780735668, guid: 02a2304ff598b184f92b9dd6565cf857,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408818420780735668, guid: 02a2304ff598b184f92b9dd6565cf857,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408818420780735668, guid: 02a2304ff598b184f92b9dd6565cf857,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408818420780735668, guid: 02a2304ff598b184f92b9dd6565cf857,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1310098400}
+    - target: {fileID: 6408818420780735668, guid: 02a2304ff598b184f92b9dd6565cf857,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: StartGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408818420780735668, guid: 02a2304ff598b184f92b9dd6565cf857,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []

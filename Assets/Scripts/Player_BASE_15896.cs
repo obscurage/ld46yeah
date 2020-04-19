@@ -24,28 +24,20 @@ public class Player : MonoBehaviour
     public AudioSource ticketSource;
     public List<AudioClip> pencilClips = new List<AudioClip>();
     public List<AudioClip> ripClips = new List<AudioClip>();
-    [HideInInspector]
-    public Animator anim;
 
-    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
         currentSpeed = speed;
         audioSource = GetComponent<AudioSource>();
-        anim = GetComponentInChildren<Animator>();
-        gameManager = gameManager.instance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.GetGameState() == GameState.RUNNING)
-        {
-            CalculateMovement();
-            PlayFootStepSound();
-        }
+        CalculateMovement();
+        PlayFootStepSound();
     }
 
     private void CalculateMovement()
@@ -87,26 +79,18 @@ public class Player : MonoBehaviour
             {
                 audioSource.Play();
                 canFootStep += footStepTimer * (2 - Mathf.Abs(Input.GetAxis("Horizontal")));
-                anim.Play("Konnari_Walk");
-
             }
-            return;
         }
-        anim.Play("Konnari");
     }
 
     public void ThrowCoal()
     {
-        if (gameManager.GetGameState() == GameState.RUNNING)
-        {
-            StartCoroutine(CoalThrowing());
-        }
+        StartCoroutine(CoalThrowing());
     }
 
     public IEnumerator CoalThrowing()
     {
         coalPopUp.SetActive(false);
-        anim.Play("Konnari_Shovel");
         GameManager gm = GameManager.instance;
         inAction = true;
         print(coalThrowTime);

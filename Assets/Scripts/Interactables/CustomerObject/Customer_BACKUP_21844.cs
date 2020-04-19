@@ -42,7 +42,7 @@ public class Customer : MonoBehaviour
 
     private void Start()
     {
-        gameManager = GameManager.instance;
+        gameManager = FindObjectOfType<GameManager>();
         foodWantCheckInterval = Random.Range(foodWantCheckIntervalMin, foodWantCheckIntervalMax);
         player = GameManager.instance.player.GetComponent<Player>();
         popUpObject.SetActive(false);
@@ -86,8 +86,11 @@ public class Customer : MonoBehaviour
 
     public void BuyFood()
     {
-        if (gameManager.GetGameState() != GameState.RUNNING) return;
+<<<<<<< HEAD
         player.anim.Play("Konnari_Ticket");
+=======
+        if (gameManager.GetGameState() != GameState.RUNNING) return;
+>>>>>>> 44d3ce2fef4c3dd5357e6ff19b82a4ba93cb766f
         StartCoroutine(FoodBuying());
     }
 

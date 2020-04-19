@@ -34,8 +34,11 @@ public class Player : MonoBehaviour
     {
         currentSpeed = speed;
         audioSource = GetComponent<AudioSource>();
+<<<<<<< HEAD
         anim = GetComponentInChildren<Animator>();
-        gameManager = gameManager.instance;
+=======
+        gameManager = FindObjectOfType<GameManager>();
+>>>>>>> 44d3ce2fef4c3dd5357e6ff19b82a4ba93cb766f
     }
 
     // Update is called once per frame

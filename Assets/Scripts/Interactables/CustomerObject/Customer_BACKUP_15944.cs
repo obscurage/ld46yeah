@@ -42,7 +42,7 @@ public class Customer : MonoBehaviour
 
     private void Start()
     {
-        gameManager = GameManager.instance;
+        gameManager = FindObjectOfType<GameManager>();
         foodWantCheckInterval = Random.Range(foodWantCheckIntervalMin, foodWantCheckIntervalMax);
         player = GameManager.instance.player.GetComponent<Player>();
         popUpObject.SetActive(false);
@@ -86,8 +86,11 @@ public class Customer : MonoBehaviour
 
     public void BuyFood()
     {
-        if (gameManager.GetGameState() != GameState.RUNNING) return;
+<<<<<<< .merge_file_a07892
         player.anim.Play("Konnari_Ticket");
+=======
+        if (gameManager.GetGameState() != GameState.RUNNING) return;
+>>>>>>> .merge_file_a15900
         StartCoroutine(FoodBuying());
     }
 
@@ -117,8 +120,11 @@ public class Customer : MonoBehaviour
 
     public void BuyTicket()
     {
-        if (gameManager.GetGameState() != GameState.RUNNING) return;
+<<<<<<< .merge_file_a07892
         player.anim.Play("Konnari_Ticket");
+=======
+        if (gameManager.GetGameState() != GameState.RUNNING) return;
+>>>>>>> .merge_file_a15900
         StartCoroutine(TicketBuying());
     }
 
