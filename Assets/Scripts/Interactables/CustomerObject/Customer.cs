@@ -126,6 +126,7 @@ public class Customer : MonoBehaviour
     {
         if (gameManager.GetGameState() != GameState.RUNNING) return;
         player.anim.Play("Konnari_Ticket");
+        gameManager.soldTickets++;
         StartCoroutine(TicketBuying());
     }
 

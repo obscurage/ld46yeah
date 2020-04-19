@@ -75,6 +75,11 @@ public class GameManager : MonoBehaviour
     public TMP_Text coalText;
 
     private Fader fader;
+    [SerializeField]
+    TMP_Text scoreText;
+    float timeMultiplier;
+    public int soldTickets;
+    int totalCustomers;
 
     private void Awake()
     {
@@ -112,6 +117,7 @@ public class GameManager : MonoBehaviour
             minCustomers = maxCustomers;
         }
         SpawnCustomers();
+        scoreText.gameObject.SetActive(false);
 
         yield return StartCoroutine(fader.FadeOut());
     }
@@ -304,6 +310,7 @@ public class GameManager : MonoBehaviour
         List<GameObject> copySpawns = customerSpots;
 
         int count = Random.Range(minCustomers, maxCustomers);
+        totalCustomers = count;
         for (int i = 0; i < count; i++)
         {
             int index = Random.Range(0, copySpawns.Count);
@@ -360,6 +367,8 @@ public class GameManager : MonoBehaviour
         startMenu.SetActive(true);
         uiTitle.text = "YOU WON!";
         buttonText.text = "Again";
+        CalculateTimeMultiplier();
+        ShowScore();
     }
 
     private void SetLostScreen()
@@ -367,6 +376,26 @@ public class GameManager : MonoBehaviour
         startMenu.SetActive(true);
         uiTitle.text = "YOU LOST!";
         buttonText.text = "Again";
+        timeMultiplier = 1;
+        ShowScore();
+    }
+
+    void ShowScore()
+    {
+        scoreText.gameObject.SetActive(true);
+        scoreText.text = $"Score: {money * timeMultiplier} \nTickets sold: {soldTickets}/{totalCustomers} \nDistance traveled: {distanceTravelled}km";
+    }
+
+    void CalculateTimeMultiplier()
+    {
+        if(totalDistance / (playTime / 3600) > speedMax / 2)
+        {
+            timeMultiplier = 2;
+        }
+        else
+        {
+            timeMultiplier = 1.5f;
+        }
     }
 
 }
