@@ -166,7 +166,7 @@ public class GameManager : MonoBehaviour
             // game state when first time starting the game.
             if (gameState != GameState.NOT_STARTED)
             {
-                ResetGameState();
+                StartCoroutine(ResetGameState());
             }
             uiTitle.text = "TRAIN GAEM (PAUSED)";
             buttonText.text = "Continue";
@@ -347,12 +347,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void ResetGameState()
+    private IEnumerator ResetGameState()
     {
-        Debug.Log("ResetGameState");
-        //yield return StartCoroutine(fader.FadeIn());
+        yield return StartCoroutine(fader.FadeIn());
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        //yield return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void SetWonScreen()
