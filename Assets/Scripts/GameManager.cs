@@ -109,11 +109,13 @@ public class GameManager : MonoBehaviour
         if (gameState == GameState.WON)
         {
             gameInitiallyStarted = false;
+            SetWonScreen();
             print("voitit pelin");
         }
         else if (gameState == GameState.LOST)
         {
             gameInitiallyStarted = false;
+            SetLostScreen();
             print("hävisit pelin");
         }
         else
@@ -145,6 +147,12 @@ public class GameManager : MonoBehaviour
     {
         if (!gameInitiallyStarted)
         {
+            ResetGameState();
+            TextMeshProUGUI uiTitle = startMenu.GetComponentsInChildren<TextMeshProUGUI>()[0];
+            uiTitle.text = "TRAIN GAEM (PAUSED)";
+            TextMeshProUGUI buttonText = startMenu.GetComponentsInChildren<TextMeshProUGUI>()[1];
+            buttonText.text = "Continue";
+
             gameInitiallyStarted = true;
             gameState = GameState.RUNNING;
         } 
@@ -323,6 +331,24 @@ public class GameManager : MonoBehaviour
     private void ResetGameState()
     {
 
+    }
+
+    private void SetWonScreen()
+    {
+        startMenu.SetActive(true);
+        TextMeshProUGUI uiTitle = startMenu.GetComponentsInChildren<TextMeshProUGUI>()[0];
+        uiTitle.text = "YOU WON!";
+        TextMeshProUGUI buttonText = startMenu.GetComponentsInChildren<TextMeshProUGUI>()[1];
+        buttonText.text = "Again";
+    }
+
+    private void SetLostScreen()
+    {
+        startMenu.SetActive(true);
+        TextMeshProUGUI uiTitle = startMenu.GetComponentsInChildren<TextMeshProUGUI>()[0];
+        uiTitle.text = "YOU LOST!";
+        TextMeshProUGUI buttonText = startMenu.GetComponentsInChildren<TextMeshProUGUI>()[1];
+        buttonText.text = "Again";
     }
 
 }
