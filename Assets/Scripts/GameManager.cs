@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,7 +23,6 @@ public class GameManager : MonoBehaviour
     public float maxCoalInMachine = 20;
     public float currentSpeed = 141;
     public float speedMax = 141;
-    public float startSpeed = 10;
     public float currentTemperature = 0;
     public float temperatureMax = 100;
     public float temperatureMin = 0;
@@ -339,9 +339,8 @@ public class GameManager : MonoBehaviour
 
     private void ResetGameState()
     {
-        backgroundMusicPlayer.reset();
-        currentSpeed = startSpeed;
-
+        //backgroundMusicPlayer.reset();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void SetWonScreen()
