@@ -30,6 +30,8 @@ public class Customer : MonoBehaviour
     int blinkIntervalMax = 5;
     [SerializeField]
     int blinkIntervalMin = 20;
+    [SerializeField]
+    GameObject wantFoodPopUp;
 
     int canBlink;
 
@@ -71,6 +73,7 @@ public class Customer : MonoBehaviour
             if(rand < foodWantChance && foodBought == false && wantsFood == false)
             {
                 wantsFood = true;
+                wantFoodPopUp.SetActive(true);
                 voiceSource.volume = 1/Mathf.Pow(Vector2.Distance(transform.position, GameManager.instance.player.transform.position), 2);
                 if(voiceSource.volume <= 0.15)
                 {
@@ -98,6 +101,7 @@ public class Customer : MonoBehaviour
     {
         foodBought = true;
         wantsFood = false;
+        wantFoodPopUp.SetActive(false);
         GameManager.instance.money += foodMoneyToPay;
         foodPopUp.SetActive(false);
         if (ticketBought == true)

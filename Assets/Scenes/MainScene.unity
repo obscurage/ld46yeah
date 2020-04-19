@@ -4010,7 +4010,7 @@ MonoBehaviour:
   - {fileID: 1779700660}
   minCustomers: 2
   maxCustomers: 12
-  totalDistance: 1
+  totalDistance: 10
   distanceTravelled: 0
   backgroundSpeedMultiplier: 20
   audioSource: {fileID: 1174498216}
@@ -5620,7 +5620,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9376b3af6d6064741be2c0eb34a3da9b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
