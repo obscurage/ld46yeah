@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text cashText;
     public TMP_Text buttonText;
     public TMP_Text uiTitle;
+    public TMP_Text coalText;
 
     private void Awake()
     {
@@ -135,6 +136,7 @@ public class GameManager : MonoBehaviour
             CalculateAnimationSpeed();
         }
         cashText.text = money.ToString();
+        coalText.text = $"{Mathf.Round(coalInMachine)}/{maxCoalInMachine}";
     }
 
     public void TogglePause()
