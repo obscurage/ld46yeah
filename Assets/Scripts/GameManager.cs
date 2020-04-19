@@ -73,6 +73,8 @@ public class GameManager : MonoBehaviour
     public TMP_Text buttonText;
     public TMP_Text uiTitle;
 
+    private Fader fader;
+
     private void Awake()
     {
         if(instance == null)
@@ -85,8 +87,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
+        fader = FindObjectOfType<Fader>();
+        fader.FadeInImmediate();
+
         startMenu.SetActive(true);
         backgroundMusicPlayer.requestClipChange(1);
 
@@ -106,6 +111,8 @@ public class GameManager : MonoBehaviour
             minCustomers = maxCustomers;
         }
         SpawnCustomers();
+
+        yield return StartCoroutine(fader.FadeOut());
     }
 
     private void Update()
@@ -342,7 +349,10 @@ public class GameManager : MonoBehaviour
 
     private void ResetGameState()
     {
+        Debug.Log("ResetGameState");
+        //yield return StartCoroutine(fader.FadeIn());
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //yield return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void SetWonScreen()
