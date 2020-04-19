@@ -1487,7 +1487,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 6
-  m_Sprite: {fileID: -9012053554092803804, guid: e3b3d6d404d5cc24f9067ec4a4de656c,
+  m_Sprite: {fileID: -3775773758789210934, guid: d6ca36f3a670de4459739c3a9a28f5df,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -4579,6 +4579,7 @@ MonoBehaviour:
   ripClips:
   - {fileID: 8300000, guid: de8163a3f0d89f341959b52b43900a6f, type: 3}
   - {fileID: 8300000, guid: 4fe2a67a43649d3449d855fd239b784f, type: 3}
+  anim: {fileID: 0}
 --- !u!4 &2098916532
 Transform:
   m_ObjectHideFlags: 0
@@ -4587,7 +4588,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2098916529}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.89, y: 0.64, z: 0}
+  m_LocalPosition: {x: -2.89, y: 0.531, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1289624804}

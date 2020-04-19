@@ -81,6 +81,7 @@ public class Customer : MonoBehaviour
 
     public void BuyFood()
     {
+        player.anim.Play("Konnari_Ticket");
         StartCoroutine(FoodBuying());
     }
 
@@ -104,11 +105,13 @@ public class Customer : MonoBehaviour
         voiceSource.volume = 1;
         GetComponent<AudioSource>().Play();
         voiceSource.Play();
+        anim.Play($"Customer{index}_RaiseHand");
 
     }
 
     public void BuyTicket()
     {
+        player.anim.Play("Konnari_Ticket");
         StartCoroutine(TicketBuying());
     }
 
