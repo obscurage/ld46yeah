@@ -227,7 +227,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 9
-  m_Sprite: {fileID: -8691225287357367019, guid: c28db14c09b71754d98e1f9dfeaa3f86,
+  m_Sprite: {fileID: 2951997888148164872, guid: c28db14c09b71754d98e1f9dfeaa3f86,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -345,7 +345,7 @@ Animator:
   m_GameObject: {fileID: 5488512860990782626}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ecc12d32f2a8b43419fe6faa071ea0e1, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -879,6 +879,7 @@ GameObject:
   - component: {fileID: 5488512862527746702}
   - component: {fileID: 5488512862527746701}
   - component: {fileID: 1669455005004475831}
+  - component: {fileID: 1668701713006877089}
   m_Layer: 0
   m_Name: CustomerObject3M
   m_TagString: Untagged
@@ -947,6 +948,8 @@ MonoBehaviour:
   foodWantCheckIntervalMin: 5
   foodWantCheckIntervalMax: 15
   voiceSource: {fileID: 5098204311915541599}
+  blinkIntervalMax: 5
+  blinkIntervalMin: 10
 --- !u!82 &1669455005004475831
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1043,6 +1046,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &1668701713006877089
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5488512862527746700}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8ff5bf541ad33f44199062d492117eb6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5827878716748986585
 GameObject:
   m_ObjectHideFlags: 0

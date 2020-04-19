@@ -25,10 +25,18 @@ public class Customer : MonoBehaviour
     float foodWantCheckInterval;
     [SerializeField]
     AudioSource voiceSource;
+    Animator anim;
+    [SerializeField]
+    int blinkIntervalMax = 5;
+    [SerializeField]
+    int blinkIntervalMin = 20;
+
+    int canBlink;
 
     float canFood;
 
     Player player;
+    int index = 0;
 
     private GameManager gameManager;
 
@@ -41,6 +49,11 @@ public class Customer : MonoBehaviour
         ticketMoneyToPay = Random.Range(GameManager.instance.customerMoneyToPayMin, GameManager.instance.customerMoneyToPayMax);
         foodMoneyToPay = Random.Range(GameManager.instance.foodPriceMin, GameManager.instance.foodPriceMax);
         canFood = foodWantCheckInterval;
+        anim = GetComponent<Animator>();
+        canBlink = Random.Range(blinkIntervalMin, blinkIntervalMax);
+        char[] name = gameObject.name.ToCharArray();
+        index = int.Parse(name[14].ToString());
+        print(index);
     }
 
     private void Update()
@@ -63,6 +76,11 @@ public class Customer : MonoBehaviour
                 voiceSource.Play();
 
             }
+        }
+        if(canBlink < Time.time)
+        {
+            canBlink += Random.Range(blinkIntervalMin, blinkIntervalMax);
+            anim.Play($"Customer{index}_Blink");
         }
     }
 
