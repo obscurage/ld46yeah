@@ -265,6 +265,7 @@ public class GameManager : MonoBehaviour
         else if (currentSpeed + rate * Time.deltaTime <= 0)
         {
             currentSpeed = 0;
+            gameState = GameState.LOST;
         }
     }
 
@@ -318,6 +319,12 @@ public class GameManager : MonoBehaviour
             TogglePause();
         }
     }
+
+    private void ResetGameState()
+    {
+
+    }
+
 }
 
 public enum GameState
