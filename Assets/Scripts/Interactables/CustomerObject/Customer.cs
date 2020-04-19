@@ -42,7 +42,7 @@ public class Customer : MonoBehaviour
 
     private void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        gameManager = GameManager.instance;
         foodWantCheckInterval = Random.Range(foodWantCheckIntervalMin, foodWantCheckIntervalMax);
         player = GameManager.instance.player.GetComponent<Player>();
         popUpObject.SetActive(false);
@@ -87,6 +87,7 @@ public class Customer : MonoBehaviour
     public void BuyFood()
     {
         if (gameManager.GetGameState() != GameState.RUNNING) return;
+        player.anim.Play("Konnari_Ticket");
         StartCoroutine(FoodBuying());
     }
 
@@ -110,12 +111,14 @@ public class Customer : MonoBehaviour
         voiceSource.volume = 1;
         GetComponent<AudioSource>().Play();
         voiceSource.Play();
+        anim.Play($"Customer{index}_RaiseHand");
 
     }
 
     public void BuyTicket()
     {
         if (gameManager.GetGameState() != GameState.RUNNING) return;
+        player.anim.Play("Konnari_Ticket");
         StartCoroutine(TicketBuying());
     }
 
