@@ -24,7 +24,6 @@ public class TrainIconHandler : MonoBehaviour
     void Update()
     {
         float distancePercentage = gm.distanceTravelled / gm.totalDistance;
-        print(distancePercentage);
-        trainIcon.transform.position = new Vector2(railStart.x + totalDistance * distancePercentage / 100, trainIcon.transform.position.y);
+        trainIcon.transform.position = new Vector2(railStart.x + totalDistance * distancePercentage / 1000, trainIcon.transform.position.y);
     }
 }

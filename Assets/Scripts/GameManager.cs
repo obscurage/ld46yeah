@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -56,6 +57,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public AudioClip[] femaleVoice;
 
+    [SerializeField]
     AudioMixerGroup pitchBendGroup;
 
     public float playTime;
@@ -66,6 +68,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] BackgroundMusicPlayer backgroundMusicPlayer;
     [SerializeField] GameObject startMenu;
+
+    public TMP_Text cashText;
 
     private void Awake()
     {
@@ -88,8 +92,6 @@ public class GameManager : MonoBehaviour
         maleVoice = Resources.LoadAll<AudioClip>("CharactersVoices/Male");
         femaleVoice = Resources.LoadAll<AudioClip>("CharactersVoices/Female");
         coalLeft = startCoal;
-
-        pitchBendGroup = Resources.Load<AudioMixerGroup>("BackgroundMixer");
         audioSource.outputAudioMixerGroup = pitchBendGroup;
         startTime = Time.time;
         if(maxCustomers > customerSpots.Count)
@@ -131,6 +133,7 @@ public class GameManager : MonoBehaviour
             CalculateDistance();
             CalculateAnimationSpeed();
         }
+        cashText.text = money.ToString();
     }
 
     public void TogglePause()
