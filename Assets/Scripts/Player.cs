@@ -17,16 +17,23 @@ public class Player : MonoBehaviour
     [SerializeField]
     GameObject coalPopUp;
 
+    AudioSource audioSource;
+    public float footStepTimer = 0.2f;
+    float canFootStep = 0;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        currentSpeed = speed;   
+        currentSpeed = speed;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
         CalculateMovement();
+        PlayFootStepSound();
     }
 
     private void CalculateMovement()
@@ -54,6 +61,22 @@ public class Player : MonoBehaviour
         }
         Vector2 movement = new Vector2(direction * currentSpeed * Time.deltaTime, 0);
         transform.Translate(movement);
+    }
+
+    private void PlayFootStepSound()
+    {
+        if (inAction)
+        {
+            return;
+        }
+        if (Input.GetAxis("Horizontal") != 0)
+        {
+            if(Time.time > canFootStep)
+            {
+                audioSource.Play();
+                canFootStep += footStepTimer * (2 - Mathf.Abs(Input.GetAxis("Horizontal")));
+            }
+        }
     }
 
     public void ThrowCoal()

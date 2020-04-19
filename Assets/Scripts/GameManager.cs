@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
     AudioMixerGroup pitchBendGroup;
 
     public float playTime;
+    public List<Animator> animators = new List<Animator>();
 
     private void Awake()
     {
@@ -93,6 +94,7 @@ public class GameManager : MonoBehaviour
         playTime = Time.time - startTime;
         CalculateTempo();
         CalculateDistance();
+        CalculateAnimationSpeed();
     }
 
     void CalculateDistance()
@@ -113,7 +115,15 @@ public class GameManager : MonoBehaviour
         float pitch = currentSpeed / speedMax;
         audioSource.pitch = pitch;
         pitchBendGroup.audioMixer.SetFloat("PitchBend", 1 / pitch);
-        audioSource.volume = 1 / Mathf.Pow(Vector2.Distance(transform.position, player.transform.position), 2);
+        audioSource.volume = 1 / Mathf.Pow(Vector2.Distance(audioSource.gameObject.transform.position, player.transform.position), 2);
+    }
+
+    void CalculateAnimationSpeed()
+    {
+        foreach (Animator animator in animators)
+        {
+            animator.speed = currentSpeed / speedMax;
+        }
     }
 
     void BurnCoal()
