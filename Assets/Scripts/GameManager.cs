@@ -45,7 +45,8 @@ public class GameManager : MonoBehaviour
 
     [Tooltip("Distance in km")]
     public float totalDistance = 5;
-    float distanceTravelled = 0;
+    [HideInInspector]
+    public float distanceTravelled = 0;
     public float backgroundSpeedMultiplier = 2;
 
     [SerializeField]
