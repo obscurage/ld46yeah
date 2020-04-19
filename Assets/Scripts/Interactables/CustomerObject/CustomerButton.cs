@@ -12,6 +12,10 @@ public class CustomerButton : MonoBehaviour
 
     void SellTicket()
     {
-        customer.BuyTicket();
+        if(GameManager.instance.player.GetComponent<Player>().inAction)
+        {
+            return;
+        }
+        StartCoroutine(customer.BuyTicket());
     }
 }

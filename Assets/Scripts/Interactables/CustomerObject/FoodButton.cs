@@ -13,6 +13,10 @@ public class FoodButton : MonoBehaviour
 
     void SellFood()
     {
-        customer.BuyFood();
+        if (GameManager.instance.player.GetComponent<Player>().inAction)
+        {
+            return;
+        }
+        StartCoroutine(customer.BuyFood());
     }
 }

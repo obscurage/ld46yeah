@@ -6,34 +6,10 @@ public class CoalButton : MonoBehaviour
 {
     public void PressButton()
     {
-        ThrowCoal();
-    }
-
-    void ThrowCoal()
-    {
-        GameManager gm = GameManager.instance;
-        if (gm.coalLeft > 0)
+        if(GameManager.instance.player.GetComponent<Player>().inAction)
         {
-            float coalThrew;
-            if (gm.coalLeft >= gm.coalPerThrow)
-            {
-                gm.coalLeft -= gm.coalPerThrow;
-                coalThrew = gm.coalPerThrow;
-            }
-            else
-            {
-                coalThrew = gm.coalLeft;
-                gm.coalLeft = 0;
-            }
-
-            if (coalThrew + gm.coalInMachine < gm.maxCoalInMachine)
-            {
-                gm.coalInMachine += coalThrew;
-            }
-            else
-            {
-                gm.coalInMachine = gm.maxCoalInMachine;
-            }
+            return;
         }
+        GameManager.instance.player.GetComponent<Player>().ThrowCoal();
     }
 }

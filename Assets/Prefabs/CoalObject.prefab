@@ -477,6 +477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71ce179bc18711548a9c3716bf397065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coalPopUp: {fileID: 3241120093476030545}
 --- !u!1 &3241120094605477498
 GameObject:
   m_ObjectHideFlags: 0

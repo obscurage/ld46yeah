@@ -2266,6 +2266,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1647442506}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1650446476 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3241120093476030545, guid: b37c0588cecef5f4cb35f3d48618e249,
+    type: 3}
+  m_PrefabInstance: {fileID: 1790968315}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1697159413
 GameObject:
   m_ObjectHideFlags: 0
@@ -2698,6 +2704,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   currentSpeed: 0
+  coalThrowTime: 1
+  foodSellTime: 1
+  ticketSellTime: 1
+  inAction: 0
+  coalPopUp: {fileID: 1650446476}
 --- !u!4 &2098916532
 Transform:
   m_ObjectHideFlags: 0

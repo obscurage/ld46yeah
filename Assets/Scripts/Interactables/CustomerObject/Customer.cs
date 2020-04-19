@@ -26,8 +26,11 @@ public class Customer : MonoBehaviour
 
     float canFood;
 
+    Player player;
+
     private void Start()
     {
+        player = GameManager.instance.player.GetComponent<Player>();
         popUpObject.SetActive(false);
         ticketMoneyToPay = Random.Range(GameManager.instance.customerMoneyToPayMin, GameManager.instance.customerMoneyToPayMax);
         foodMoneyToPay = Random.Range(GameManager.instance.foodPriceMin, GameManager.instance.foodPriceMax);
@@ -54,7 +57,7 @@ public class Customer : MonoBehaviour
         }
     }
 
-    public void BuyFood()
+    public IEnumerator BuyFood()
     {
         foodBought = true;
         wantsFood = false;
@@ -62,15 +65,18 @@ public class Customer : MonoBehaviour
         foodPopUp.SetActive(false);
         if (ticketBought == true)
         {
-            popUpObject.SetActive(false); 
+            popUpObject.SetActive(false);
         }
+        player.inAction = true;
+        yield return new WaitForSeconds(player.foodSellTime);
+        player.inAction = false;
         voiceSource.volume = 1;
         GetComponent<AudioSource>().Play();
         voiceSource.Play();
 
     }
 
-    public void BuyTicket()
+    public IEnumerator BuyTicket()
     {
         ticketBought = true;
         GameManager.instance.money += ticketMoneyToPay;
@@ -83,6 +89,9 @@ public class Customer : MonoBehaviour
         {
             popUpObject.SetActive(false);
         }
+        player.inAction = true;
+        yield return new WaitForSeconds(player.ticketSellTime);
+        player.inAction = false;
         voiceSource.volume = 1;
         GetComponent<AudioSource>().Play();
         voiceSource.Play();
@@ -136,7 +145,6 @@ public class Customer : MonoBehaviour
     public void SetGender()
     {
         int gender = Random.Range(0, 2);
-        print(gender);
         if (gender == 0)
         {
             isMale = true;

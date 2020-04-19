@@ -8,6 +8,15 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public float currentSpeed = 0;
 
+    public float coalThrowTime = 1;
+    public float foodSellTime = 1;
+    public float ticketSellTime = 1;
+
+    public bool inAction = false;
+
+    [SerializeField]
+    GameObject coalPopUp;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +31,10 @@ public class Player : MonoBehaviour
 
     private void CalculateMovement()
     {
+        if(inAction)
+        {
+            return;
+        }
         float direction = Input.GetAxis("Horizontal");
         if (GameManager.instance.foodCart.GetInUse())
         {
@@ -41,5 +54,44 @@ public class Player : MonoBehaviour
         }
         Vector2 movement = new Vector2(direction * currentSpeed * Time.deltaTime, 0);
         transform.Translate(movement);
+    }
+
+    public void ThrowCoal()
+    {
+        StartCoroutine(CoalThrowing());
+    }
+
+    public IEnumerator CoalThrowing()
+    {
+        coalPopUp.SetActive(false);
+        GameManager gm = GameManager.instance;
+        inAction = true;
+        print(coalThrowTime);
+        yield return new WaitForSeconds(coalThrowTime);
+        inAction = false;
+        if (gm.coalLeft > 0)
+        {
+            float coalThrew;
+            if (gm.coalLeft >= gm.coalPerThrow)
+            {
+                gm.coalLeft -= gm.coalPerThrow;
+                coalThrew = gm.coalPerThrow;
+            }
+            else
+            {
+                coalThrew = gm.coalLeft;
+                gm.coalLeft = 0;
+            }
+
+            if (coalThrew + gm.coalInMachine < gm.maxCoalInMachine)
+            {
+                gm.coalInMachine += coalThrew;
+            }
+            else
+            {
+                gm.coalInMachine = gm.maxCoalInMachine;
+            }
+        }
+        coalPopUp.SetActive(true);
     }
 }
