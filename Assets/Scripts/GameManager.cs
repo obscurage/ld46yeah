@@ -56,6 +56,8 @@ public class GameManager : MonoBehaviour
     public float playTime;
     public List<Animator> animators = new List<Animator>();
 
+    [SerializeField] BackgroundMusicPlayer backgroundMusicPlayer;
+
     private void Awake()
     {
         if(instance == null)
@@ -70,6 +72,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        // This should be called when player starts the game by pressin Start on main menu.
+        backgroundMusicPlayer.requestClipChange(1);        
+
         maleVoice = Resources.LoadAll<AudioClip>("CharactersVoices/Male");
         femaleVoice = Resources.LoadAll<AudioClip>("CharactersVoices/Female");
         coalLeft = startCoal;
@@ -95,6 +100,7 @@ public class GameManager : MonoBehaviour
         CalculateTempo();
         CalculateDistance();
         CalculateAnimationSpeed();
+        HandleMusicChanges();
     }
 
     void CalculateDistance()
@@ -108,6 +114,12 @@ public class GameManager : MonoBehaviour
             distanceTravelled = totalDistance;
             print("voitit pelin");
         }
+    }
+
+    float CalculateDistanceTravelledAsPercentage()
+    {
+        if (distanceTravelled <= 0) return 0f;
+        return (distanceTravelled / (totalDistance * 1000)) * 100;
     }
 
     private void CalculateTempo()
@@ -226,6 +238,20 @@ public class GameManager : MonoBehaviour
             {
                 c.GetComponent<Customer>().GetVoiceSource().clip = femaleVoice[Random.Range(0, femaleVoice.Length)];
             }
+        }
+    }
+
+    void HandleMusicChanges()
+    {
+        float distanceTravelledAsPercentage = CalculateDistanceTravelledAsPercentage();
+        if (distanceTravelled > 0 && distanceTravelledAsPercentage < 45) {
+            backgroundMusicPlayer.requestClipChange(2);
+        }
+        else if (distanceTravelledAsPercentage >= 45 && distanceTravelledAsPercentage < 80) {
+            backgroundMusicPlayer.requestClipChange(5);
+        } 
+        else if (distanceTravelledAsPercentage >= 80) {
+            backgroundMusicPlayer.requestClipChange(6);
         }
     }
 }
