@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        startMenu.SetActive(true);
         backgroundMusicPlayer.requestClipChange(1);        
 
         maleVoice = Resources.LoadAll<AudioClip>("CharactersVoices/Male");
