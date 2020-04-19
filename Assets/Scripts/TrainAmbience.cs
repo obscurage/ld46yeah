@@ -13,12 +13,11 @@ public class TrainAmbience : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(followPlayer && transform.position.x <= bounds.x)
+        if(transform.position.x <= bounds.x)
         {
-            transform.Translate(new Vector2(Input.GetAxis("Horizontal") * Time.deltaTime,0));
+            transform.position = GameManager.instance.player.transform.position;
         }
         if(transform.position.x > bounds.x)
         {
@@ -29,20 +28,10 @@ public class TrainAmbience : MonoBehaviour
         {
             audioSource.volume = 0;
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("Player"))
+        GameManager gm = GameManager.instance;
+        if(gm.currentSpeed/gm.speedMax < 0.3)
         {
-            followPlayer = true;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            followPlayer = false;
+            audioSource.volume = audioSource.volume * gm.currentSpeed / gm.speedMax;
         }
     }
 }

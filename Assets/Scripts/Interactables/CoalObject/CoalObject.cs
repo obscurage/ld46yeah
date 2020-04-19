@@ -7,6 +7,10 @@ public class CoalObject : MonoBehaviour
     [SerializeField]
     GameObject coalPopup;
     public float startVolume = 0.2f;
+    [SerializeField]
+    AudioSource fireSource;
+    [SerializeField]
+    AudioSource emptySource;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -25,11 +29,17 @@ public class CoalObject : MonoBehaviour
 
     private void Update()
     {
-        AudioSource audio = GetComponent<AudioSource>();
-        audio.volume = (1/Mathf.Pow(Vector2.Distance(transform.position, GameManager.instance.player.transform.position), 2)) - (1 - startVolume);
-        if(audio.volume > startVolume)
+        fireSource.volume = startVolume * (1/Mathf.Pow(Vector2.Distance(transform.position, GameManager.instance.player.transform.position), 2));
+        fireSource.volume = startVolume * fireSource.volume * (GameManager.instance.currentTemperature / GameManager.instance.temperatureMax);
+        if (fireSource.volume > startVolume)
         {
-            audio.volume = startVolume;
+            fireSource.volume = startVolume;
         }
+        emptySource.volume = startVolume * (1 / Mathf.Pow(Vector2.Distance(transform.position, GameManager.instance.player.transform.position), 2));
+        if (emptySource.volume > startVolume)
+        {
+            emptySource.volume = startVolume;
+        }
+
     }
 }

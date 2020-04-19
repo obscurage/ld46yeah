@@ -19,7 +19,10 @@ public class Customer : MonoBehaviour
     [Range(0, 100)]
     int foodWantChance = 20;
     [SerializeField]
-    float foodWantCheckInterval = 10;
+    float foodWantCheckIntervalMin = 5;
+    [SerializeField]
+    float foodWantCheckIntervalMax = 15;
+    float foodWantCheckInterval;
     [SerializeField]
     AudioSource voiceSource;
     bool isMale = true;
@@ -30,6 +33,7 @@ public class Customer : MonoBehaviour
 
     private void Start()
     {
+        foodWantCheckInterval = Random.Range(foodWantCheckIntervalMin, foodWantCheckIntervalMax);
         player = GameManager.instance.player.GetComponent<Player>();
         popUpObject.SetActive(false);
         ticketMoneyToPay = Random.Range(GameManager.instance.customerMoneyToPayMin, GameManager.instance.customerMoneyToPayMax);
@@ -41,6 +45,7 @@ public class Customer : MonoBehaviour
     {
         if(canFood < GameManager.instance.playTime)
         {
+            foodWantCheckInterval = Random.Range(foodWantCheckIntervalMin, foodWantCheckIntervalMax);
             canFood += foodWantCheckInterval;
             int rand = Random.Range(0, 100);
             if(rand < foodWantChance && foodBought == false && wantsFood == false)

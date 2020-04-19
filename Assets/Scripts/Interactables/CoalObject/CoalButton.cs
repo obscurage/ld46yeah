@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CoalButton : MonoBehaviour
 {
+    [SerializeField]
+    AudioSource coalSource;
     public void PressButton()
     {
         if(GameManager.instance.player.GetComponent<Player>().inAction)
@@ -11,5 +13,6 @@ public class CoalButton : MonoBehaviour
             return;
         }
         GameManager.instance.player.GetComponent<Player>().ThrowCoal();
+        coalSource.Play();
     }
 }
