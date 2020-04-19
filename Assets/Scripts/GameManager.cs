@@ -339,7 +339,6 @@ public class GameManager : MonoBehaviour
 
     private void ResetGameState()
     {
-        //backgroundMusicPlayer.reset();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
