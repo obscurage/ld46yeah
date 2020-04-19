@@ -87,12 +87,13 @@ public class GameManager : MonoBehaviour
     {
         startMenu.SetActive(true);
         backgroundMusicPlayer.requestClipChange(1);
-        CalculateTempo();
 
         maleVoice = Resources.LoadAll<AudioClip>("CharactersVoices/Male");
         femaleVoice = Resources.LoadAll<AudioClip>("CharactersVoices/Female");
         coalLeft = startCoal;
         audioSource.outputAudioMixerGroup = pitchBendGroup;
+        CalculateTempo();
+
         startTime = Time.time;
         if(maxCustomers > customerSpots.Count)
         {
