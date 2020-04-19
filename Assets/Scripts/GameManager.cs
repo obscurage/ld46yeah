@@ -149,7 +149,13 @@ public class GameManager : MonoBehaviour
     {
         if (!gameInitiallyStarted)
         {
-            ResetGameState();
+            // May seem little unclear what this does but basically this prevents resetting
+            // game state when first time starting the game.
+            if (gameState != GameState.NOT_STARTED)
+            {
+                ResetGameState();
+            }
+
             TextMeshProUGUI uiTitle = startMenu.GetComponentsInChildren<TextMeshProUGUI>()[0];
             uiTitle.text = "TRAIN GAEM (PAUSED)";
             TextMeshProUGUI buttonText = startMenu.GetComponentsInChildren<TextMeshProUGUI>()[1];
