@@ -81,7 +81,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         startMenu.SetActive(true);
-        backgroundMusicPlayer.requestClipChange(1);        
+        backgroundMusicPlayer.requestClipChange(1);
+        CalculateTempo();
 
         maleVoice = Resources.LoadAll<AudioClip>("CharactersVoices/Male");
         femaleVoice = Resources.LoadAll<AudioClip>("CharactersVoices/Female");

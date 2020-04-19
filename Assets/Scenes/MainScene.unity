@@ -3937,11 +3937,11 @@ MonoBehaviour:
   cartMultiplier: 0.5
   startCoal: 500
   coalLeft: 0
-  coalInMachine: 10
+  coalInMachine: 12
   maxCoalInMachine: 20
-  currentSpeed: 10
+  currentSpeed: 80
   speedMax: 141
-  currentTemperature: 0
+  currentTemperature: 60
   temperatureMax: 100
   temperatureMin: 0
   coalPerThrow: 3
