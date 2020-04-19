@@ -8,6 +8,7 @@ public class CartObject : MonoBehaviour
     GameObject popUp;
     [SerializeField]
     Transform playerPosition;
+    AudioSource audioSource;
 
     private GameManager gameManager;
 
@@ -15,7 +16,8 @@ public class CartObject : MonoBehaviour
 
     private void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        audioSource = GetComponent<AudioSource>();
+        gameManager = GameManager.instance;
     }
 
     public void UseCart()
@@ -61,6 +63,10 @@ public class CartObject : MonoBehaviour
                     inUse = false;
                 }
             }
+            else
+            {
+                audioSource.Stop();
+            }
         }
     }
 
@@ -68,5 +74,13 @@ public class CartObject : MonoBehaviour
     {
         Vector2 movement = new Vector2(Input.GetAxis("Horizontal") * GameManager.instance.player.GetComponent<Player>().currentSpeed * Time.deltaTime, 0);
         transform.Translate(movement);
+        if (!audioSource.isPlaying && Input.GetAxis("Horizontal") != 0)
+        {
+            audioSource.Play(); 
+        }
+        else if(Input.GetAxis("Horizontal") == 0)
+        {
+            audioSource.Stop();
+        }
     }
 }
