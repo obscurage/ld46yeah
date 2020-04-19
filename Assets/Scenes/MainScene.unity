@@ -3842,9 +3842,10 @@ MonoBehaviour:
   coalLeft: 0
   coalInMachine: 10
   maxCoalInMachine: 20
-  currentSpeed: 100
+  currentSpeed: 10
   speedMax: 141
-  currentTemperature: 70
+  startSpeed: 10
+  currentTemperature: 0
   temperatureMax: 100
   temperatureMin: 0
   coalPerThrow: 3

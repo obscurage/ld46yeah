@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public float maxCoalInMachine = 20;
     public float currentSpeed = 141;
     public float speedMax = 141;
+    public float startSpeed = 10;
     public float currentTemperature = 0;
     public float temperatureMax = 100;
     public float temperatureMin = 0;
@@ -110,11 +111,13 @@ public class GameManager : MonoBehaviour
         if (gameState == GameState.WON)
         {
             gameInitiallyStarted = false;
+            SetWonScreen();
             print("voitit pelin");
         }
         else if (gameState == GameState.LOST)
         {
             gameInitiallyStarted = false;
+            SetLostScreen();
             print("hävisit pelin");
         }
         else
@@ -146,6 +149,18 @@ public class GameManager : MonoBehaviour
     {
         if (!gameInitiallyStarted)
         {
+            // May seem little unclear what this does but basically this prevents resetting
+            // game state when first time starting the game.
+            if (gameState != GameState.NOT_STARTED)
+            {
+                ResetGameState();
+            }
+
+            TextMeshProUGUI uiTitle = startMenu.GetComponentsInChildren<TextMeshProUGUI>()[0];
+            uiTitle.text = "TRAIN GAEM (PAUSED)";
+            TextMeshProUGUI buttonText = startMenu.GetComponentsInChildren<TextMeshProUGUI>()[1];
+            buttonText.text = "Continue";
+
             gameInitiallyStarted = true;
             gameState = GameState.RUNNING;
         } 
@@ -226,6 +241,7 @@ public class GameManager : MonoBehaviour
         }
         RaiseTemperature(tempAccelerationRate);
     }
+    
     void RaiseTemperature(float rate)
     {
         if(currentTemperature + rate * Time.deltaTime <= temperatureMax && currentTemperature + rate >= temperatureMin)
@@ -266,6 +282,7 @@ public class GameManager : MonoBehaviour
         else if (currentSpeed + rate * Time.deltaTime <= 0)
         {
             currentSpeed = 0;
+            gameState = GameState.LOST;
         }
     }
 
@@ -319,6 +336,32 @@ public class GameManager : MonoBehaviour
             TogglePause();
         }
     }
+
+    private void ResetGameState()
+    {
+        backgroundMusicPlayer.reset();
+        currentSpeed = startSpeed;
+
+    }
+
+    private void SetWonScreen()
+    {
+        startMenu.SetActive(true);
+        TextMeshProUGUI uiTitle = startMenu.GetComponentsInChildren<TextMeshProUGUI>()[0];
+        uiTitle.text = "YOU WON!";
+        TextMeshProUGUI buttonText = startMenu.GetComponentsInChildren<TextMeshProUGUI>()[1];
+        buttonText.text = "Again";
+    }
+
+    private void SetLostScreen()
+    {
+        startMenu.SetActive(true);
+        TextMeshProUGUI uiTitle = startMenu.GetComponentsInChildren<TextMeshProUGUI>()[0];
+        uiTitle.text = "YOU LOST!";
+        TextMeshProUGUI buttonText = startMenu.GetComponentsInChildren<TextMeshProUGUI>()[1];
+        buttonText.text = "Again";
+    }
+
 }
 
 public enum GameState
