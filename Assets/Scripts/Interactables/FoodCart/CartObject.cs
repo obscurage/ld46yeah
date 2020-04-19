@@ -40,7 +40,7 @@ public class CartObject : MonoBehaviour
 
     private void Update()
     {
-        if(inUse)
+        if(inUse && !GameManager.instance.player.GetComponent<Player>().inAction)
         {
             MoveCart();
 

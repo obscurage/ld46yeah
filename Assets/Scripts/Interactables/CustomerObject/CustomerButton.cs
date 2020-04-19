@@ -16,6 +16,6 @@ public class CustomerButton : MonoBehaviour
         {
             return;
         }
-        StartCoroutine(customer.BuyTicket());
+        customer.BuyTicket();
     }
 }

@@ -113,6 +113,7 @@ public class GameManager : MonoBehaviour
         float pitch = currentSpeed / speedMax;
         audioSource.pitch = pitch;
         pitchBendGroup.audioMixer.SetFloat("PitchBend", 1 / pitch);
+        audioSource.volume = 1 / Mathf.Pow(Vector2.Distance(transform.position, player.transform.position), 2);
     }
 
     void BurnCoal()

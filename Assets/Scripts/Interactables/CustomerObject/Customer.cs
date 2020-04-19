@@ -57,7 +57,12 @@ public class Customer : MonoBehaviour
         }
     }
 
-    public IEnumerator BuyFood()
+    public void BuyFood()
+    {
+        StartCoroutine(FoodBuying());
+    }
+
+    public IEnumerator FoodBuying()
     {
         foodBought = true;
         wantsFood = false;
@@ -76,7 +81,12 @@ public class Customer : MonoBehaviour
 
     }
 
-    public IEnumerator BuyTicket()
+    public void BuyTicket()
+    {
+        StartCoroutine(TicketBuying());
+    }
+
+    public IEnumerator TicketBuying()
     {
         ticketBought = true;
         GameManager.instance.money += ticketMoneyToPay;

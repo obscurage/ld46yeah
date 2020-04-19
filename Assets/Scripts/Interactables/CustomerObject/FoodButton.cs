@@ -17,6 +17,6 @@ public class FoodButton : MonoBehaviour
         {
             return;
         }
-        StartCoroutine(customer.BuyFood());
+        customer.BuyFood();
     }
 }
