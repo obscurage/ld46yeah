@@ -230,7 +230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 109192667}
   - component: {fileID: 109192668}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: rails (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1345,7 +1345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 402257806}
   - component: {fileID: 402257807}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: rails_start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1668,7 +1668,7 @@ GameObject:
   m_Component:
   - component: {fileID: 625092620}
   - component: {fileID: 625092621}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: cash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2334,7 +2334,7 @@ GameObject:
   m_Component:
   - component: {fileID: 773439674}
   - component: {fileID: 773439675}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: rails
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2668,7 +2668,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1059486198}
   - component: {fileID: 1059486199}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: New Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2749,7 +2749,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1069876712}
   - component: {fileID: 1069876713}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: train_icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3695,7 +3695,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1526710192}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: rails
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3730,7 +3730,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1559189654}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Points
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3969,7 +3969,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1679866425}
   - component: {fileID: 1679866426}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: rails (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4188,7 +4188,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1796652379}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4290,7 +4290,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1873397611}
   - component: {fileID: 1873397612}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: rails_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
