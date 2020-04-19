@@ -78,7 +78,11 @@ public class Customer : MonoBehaviour
             popUpObject.SetActive(false);
         }
         player.inAction = true;
+        player.ticketSource.clip = player.pencilClips[Random.Range(0, player.pencilClips.Count)];
+        player.ticketSource.Play();
         yield return new WaitForSeconds(player.foodSellTime);
+        player.ticketSource.clip = player.ripClips[Random.Range(0, player.ripClips.Count)];
+        player.ticketSource.Play();
         player.inAction = false;
         voiceSource.volume = 1;
         GetComponent<AudioSource>().Play();
@@ -105,7 +109,11 @@ public class Customer : MonoBehaviour
             popUpObject.SetActive(false);
         }
         player.inAction = true;
+        player.ticketSource.clip = player.pencilClips[Random.Range(0,player.pencilClips.Count)];
+        player.ticketSource.Play();
         yield return new WaitForSeconds(player.ticketSellTime);
+        player.ticketSource.clip = player.ripClips[Random.Range(0,player.ripClips.Count)];
+        player.ticketSource.Play();
         player.inAction = false;
         voiceSource.volume = 1;
         GetComponent<AudioSource>().Play();

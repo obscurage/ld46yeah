@@ -21,6 +21,10 @@ public class Player : MonoBehaviour
     public float footStepTimer = 0.2f;
     float canFootStep = 0;
 
+    public AudioSource ticketSource;
+    public List<AudioClip> pencilClips = new List<AudioClip>();
+    public List<AudioClip> ripClips = new List<AudioClip>();
+
 
     // Start is called before the first frame update
     void Start()
