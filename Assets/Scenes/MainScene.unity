@@ -752,7 +752,13 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1790968315}
   m_PrefabAsset: {fileID: 0}
---- !u!82 &303022148
+--- !u!82 &303022148 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 303022148, guid: b37c0588cecef5f4cb35f3d48618e249,
+    type: 3}
+  m_PrefabInstance: {fileID: 1790968315}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &303022149
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -762,9 +768,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 137aa106694a5a84c9b69192746cbd35, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a8ffb6a9abb61e241a77a1751a368df9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.211
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1274,7 +1280,6 @@ GameObject:
   m_Component:
   - component: {fileID: 599646989}
   - component: {fileID: 599646992}
-  - component: {fileID: 599646991}
   - component: {fileID: 599646990}
   m_Layer: 0
   m_Name: TrainAmbience
@@ -1309,32 +1314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3465868da477806419e16cd38694b534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &599646991
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 599646988}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.08855128, y: 0.24035311}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.54459333, y: 0.5192938}
-  m_EdgeRadius: 0
 --- !u!82 &599646992
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3553,31 +3532,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3241120093476030557, guid: b37c0588cecef5f4cb35f3d48618e249,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3241120094166859892, guid: b37c0588cecef5f4cb35f3d48618e249,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3241120094166859893, guid: b37c0588cecef5f4cb35f3d48618e249,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3241120094166859894, guid: b37c0588cecef5f4cb35f3d48618e249,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3241120094166859894, guid: b37c0588cecef5f4cb35f3d48618e249,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3241120094605477476, guid: b37c0588cecef5f4cb35f3d48618e249,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3633,6 +3587,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3241120094605477477, guid: b37c0588cecef5f4cb35f3d48618e249,
+        type: 3}
+      propertyPath: fireSource
+      value: 
+      objectReference: {fileID: 303022148}
+    - target: {fileID: 3241120094605477477, guid: b37c0588cecef5f4cb35f3d48618e249,
+        type: 3}
+      propertyPath: emptySource
+      value: 
+      objectReference: {fileID: 303022149}
     - target: {fileID: 3241120094605477498, guid: b37c0588cecef5f4cb35f3d48618e249,
         type: 3}
       propertyPath: m_Name
