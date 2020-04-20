@@ -5545,6 +5545,7 @@ MonoBehaviour:
   - {fileID: 679196390}
   - {fileID: 719250424}
   - {fileID: 109887305}
+  - {fileID: 669700402}
   backgroundMusicPlayer: {fileID: 960737862}
   startMenu: {fileID: 4481603655656690713}
   cashText: {fileID: 1846730469}
