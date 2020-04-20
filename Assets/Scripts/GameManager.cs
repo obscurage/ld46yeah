@@ -57,6 +57,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public AudioClip[] femaleVoice;
 
+    AudioListener audioListener;
+
     [SerializeField]
     AudioMixerGroup pitchBendGroup;
 
@@ -95,6 +97,8 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator Start()
     {
+        AudioListener.volume = 0;
+
         fader = FindObjectOfType<Fader>();
         fader.FadeInImmediate();
 
