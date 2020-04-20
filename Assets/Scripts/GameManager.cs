@@ -155,7 +155,7 @@ public class GameManager : MonoBehaviour
             CalculateAnimationSpeed();
         }
         cashText.text = money.ToString();
-        coalText.text = $"{Mathf.Round(coalInMachine)}/{maxCoalInMachine}";
+        coalText.text = $"{Mathf.Round(coalInMachine)} / {maxCoalInMachine}";
     }
 
     public void TogglePause()
