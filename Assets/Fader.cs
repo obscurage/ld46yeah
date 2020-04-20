@@ -33,6 +33,7 @@ public class Fader : MonoBehaviour
         while (canvasGroup.alpha > 0)
         {
             canvasGroup.alpha -= 1f / fadeTime * Time.deltaTime;
+            AudioListener.volume += 1f / fadeTime * Time.deltaTime;
             yield return null;
         }
     }
@@ -41,6 +42,7 @@ public class Fader : MonoBehaviour
     {
         while (canvasGroup.alpha < 1)
         {
+            AudioListener.volume -= 1f / fadeTime * Time.deltaTime;
             canvasGroup.alpha += 1f / fadeTime * Time.deltaTime;
             yield return null;
         }
