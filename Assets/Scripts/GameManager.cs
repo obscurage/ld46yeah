@@ -201,7 +201,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            distanceTravelled = totalDistance;
+            distanceTravelled = totalDistance * 1000;
             gameState = GameState.WON;
         }
     }
@@ -383,7 +383,8 @@ public class GameManager : MonoBehaviour
     void ShowScore()
     {
         scoreText.gameObject.SetActive(true);
-        scoreText.text = $"Score: {money * timeMultiplier} \nTickets sold: {soldTickets}/{totalCustomers} \nDistance traveled: {distanceTravelled}km";
+        string distInKm = (distanceTravelled / 1000).ToString("0.00");
+        scoreText.text = $"Score: {money * timeMultiplier} \nTickets sold: {soldTickets}/{totalCustomers} \nDistance traveled: {distInKm}km";
     }
 
     void CalculateTimeMultiplier()

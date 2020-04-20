@@ -5330,7 +5330,7 @@ MonoBehaviour:
   - {fileID: 1779700660}
   minCustomers: 2
   maxCustomers: 12
-  totalDistance: 14
+  totalDistance: 16
   distanceTravelled: 0
   backgroundSpeedMultiplier: 10
   audioSource: {fileID: 1174498216}
