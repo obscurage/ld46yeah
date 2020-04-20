@@ -5,7 +5,6 @@ using UnityEngine;
 public class BackgroundParallax : MonoBehaviour
 {
     private float length, startpos;
-    public GameObject cam;
     public float parallaxEffect;
     private float speed;
 
@@ -18,6 +17,7 @@ public class BackgroundParallax : MonoBehaviour
     void FixedUpdate()
     {
         speed = GameManager.instance.currentSpeed * GameManager.instance.backgroundSpeedMultiplier / GameManager.instance.speedMax;
+        //speed = 1;
         float temp = transform.position.x - ((1 - parallaxEffect) * Time.deltaTime * speed);
         float dist = transform.position.x - (parallaxEffect * Time.deltaTime * speed);
 
