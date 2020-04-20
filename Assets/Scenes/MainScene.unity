@@ -4049,7 +4049,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 379.5, y: -20.100006}
+  m_AnchoredPosition: {x: 379.5, y: -20.099976}
   m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &909466891
@@ -4498,7 +4498,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -272.7, y: -14.5000305}
+  m_AnchoredPosition: {x: -272.7, y: -14.5}
   m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1048325520
@@ -9526,7 +9526,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: a Ludum Dare 46 gaem by by Kalle Kivisto, kovalok, tuho, Ed-Die & seamule
+  m_text: a Ludum Dare 46 gaem by Kalle Kivisto, kovalok, tuho, Ed-Die & seamule
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2618b13068b146c4abd74fb4bf4705e7, type: 2}
   m_sharedMaterial: {fileID: 4562434428166671090, guid: 2618b13068b146c4abd74fb4bf4705e7,
@@ -9596,10 +9596,10 @@ MonoBehaviour:
   m_margin: {x: 11.1304245, y: 23.256046, z: 10.746069, w: 5.087269}
   m_textInfo:
     textComponent: {fileID: 6408818418983650307}
-    characterCount: 73
+    characterCount: 70
     spriteCount: 0
-    spaceCount: 13
-    wordCount: 13
+    spaceCount: 12
+    wordCount: 12
     linkCount: 0
     lineCount: 1
     pageCount: 1
