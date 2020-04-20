@@ -218,6 +218,7 @@ public class GameManager : MonoBehaviour
         audioSource.pitch = pitch;
         pitchBendGroup.audioMixer.SetFloat("PitchBend", 1 / pitch);
         audioSource.volume = 1 / Mathf.Pow(Vector2.Distance(audioSource.gameObject.transform.position, player.transform.position), 2);
+        audioSource.volume = Mathf.Clamp(audioSource.volume, 0, 0.35f);
     }
 
     void CalculateAnimationSpeed()

@@ -7,6 +7,7 @@ public class TrainAmbience : MonoBehaviour
     bool followPlayer = false;
     private Vector2 bounds;
     AudioSource audioSource;
+    float maxAudioLevel = 0.45f;
     void Start()
     {
         bounds = transform.position;
@@ -33,5 +34,7 @@ public class TrainAmbience : MonoBehaviour
         {
             audioSource.volume = audioSource.volume * gm.currentSpeed / gm.speedMax;
         }
+
+        audioSource.volume = Mathf.Clamp(audioSource.volume, 0, maxAudioLevel);
     }
 }
