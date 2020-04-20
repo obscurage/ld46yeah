@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public AudioClip[] femaleVoice;
 
-    AudioListener audioListener;
+    [SerializeField] AudioSource trainWhistle;
 
     [SerializeField]
     AudioMixerGroup pitchBendGroup;
@@ -82,6 +82,8 @@ public class GameManager : MonoBehaviour
     float timeMultiplier;
     public int soldTickets;
     int totalCustomers;
+
+    bool whistlePlayed = false;
 
     private void Awake()
     {
@@ -174,6 +176,11 @@ public class GameManager : MonoBehaviour
     {
         if (!gameInitiallyStarted)
         {
+            if (!whistlePlayed)
+            {
+                trainWhistle.Play();
+                whistlePlayed = true;
+            }
             // May seem little unclear what this does but basically this prevents resetting
             // game state when first time starting the game.
             if (gameState != GameState.NOT_STARTED)
