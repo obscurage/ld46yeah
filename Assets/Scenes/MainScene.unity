@@ -2937,7 +2937,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 363793866, guid: f6f12d04fd828f344bcaa8e2c235fc40, type: 3}
       propertyPath: parallaxEffect
-      value: 0.1
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 6274003552904911796, guid: f6f12d04fd828f344bcaa8e2c235fc40,
         type: 3}
