@@ -654,7 +654,7 @@ MonoBehaviour:
   popUpObject: {fileID: 5488512861023331881}
   foodPopUp: {fileID: 4719420135468986592}
   ticketPopUp: {fileID: 6344873456005897729}
-  foodWantChance: 25
+  foodWantChance: 10
   foodWantCheckIntervalMin: 5
   foodWantCheckIntervalMax: 15
   voiceSource: {fileID: 5098204311915541599}
